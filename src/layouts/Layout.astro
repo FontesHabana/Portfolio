@@ -1,0 +1,78 @@
+---
+// 1. Importar las transiciones de Astro
+import { ClientRouter } from 'astro:transitions';
+import '../styles/global.css'; // Asumiendo que crearás este archivo
+
+import Header from '../components/Header.astro';
+
+
+// 2. Definir las Props (para cambiar el título de cada página)
+interface Props {
+	title: string;
+    lang?: string;
+}
+
+
+
+const { title, lang = "es" } = Astro.props;
+---
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		
+        <!-- Activa las transiciones automáticas entre páginas -->
+        <ClientRouter />
+
+        <!-- Script para evitar el parpadeo blanco en Modo Oscuro -->
+        <script is:inline>
+            const theme = (() => {
+                if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+                    return localStorage.getItem('theme');
+                }
+                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    return 'dark';
+                }
+                return 'light';
+            })();
+          
+            if (theme === 'light') {
+                document.documentElement.classList.remove('dark');
+            } else {
+                document.documentElement.classList.add('dark');
+            }
+        </script>
+	</head>
+	<body >
+		
+        <nav>
+            <!-- Aquí irá tu componente de navegación más adelante -->
+        </nav>
+
+        <main>
+            <!-- El SLOT es donde se inyectará el contenido de cada página -->
+            <slot /> 
+        </main>
+
+        <footer>
+            <!-- Tu pie de página -->
+        </footer>
+
+	</body>
+</html>
+
+<style is:global>
+html{
+    font-family: system-ui,  sans-serif;
+}
+body{
+    display: flex;
+    justify-content: center;
+}
+
+
+</style>
