@@ -13,13 +13,7 @@ const PageTransition = () => {
         className="fixed top-0 left-0 w-full h-screen bg-indigo-600 z-[100] origin-top"
       />
       
-      {/* Cuadro decorativo que se expande */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5, delay: 0.4 }}
-        className="fixed inset-0 pointer-events-none border-[20px] border-indigo-600/10 z-[90]"
-      />
+     
     </>
   );
 };
