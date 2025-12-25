@@ -10,7 +10,7 @@ export default function Dropdown() {
         onClick={() => setIsOpen(!isOpen)}
         onMouseLeave={() => !isOpen && setIsOpen(false)}
         className={`group relative h-12 w-28 text-black flex items-center justify-start gap-3 rounded-full overflow-hidden transition-all duration-300 active:scale-95  ease-in-out hover:bg-white transition ${
-          isOpen ? "bg-white" : "bg-[#efefff]"
+          isOpen ? "bg-white" : "bg-[#fafaff]"
         } `}
       >
         <div className="relative h-5 overflow-hidden">
