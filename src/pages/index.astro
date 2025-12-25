@@ -1,130 +1,103 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 //import BackgroundLines from '../components/BackgroundLines.jsx';
-import PageTransition from '../components/PageTransition.jsx';
-import { Github, Linkedin, ExternalLink, Code2, Terminal, Cpu, Globe } from 'lucide-react';
-import Dropdown from '../components/DropDown.jsx'
-import Header from '../components/Header.astro';
+import PageTransition from "../components/PageTransition.jsx";
+import {
+  Github,
+  Linkedin,
+  ExternalLink,
+  Code2,
+  Terminal,
+  Cpu,
+  Globe,
+} from "lucide-react";
+import Dropdown from "../components/DropDown.jsx";
+import Header from "../components/Header.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import Projects from "./projects.astro";
 ---
 
 <Layout title="Tu Nombre | Fullstack Developer">
   <!-- Componentes de Animación -->
   <PageTransition client:load />
-  
 
-  <!-- NAVBAR (Flotante) -->
-  
+  <!-- Menu -->
   <nav class="fixed top-0 right-0 w-full justify-end z-50 flex p-6">
-  <Dropdown client:load/>  
+    <Dropdown client:load />
   </nav>
-  
-  <Header></Header>
+   <!--Presentation -->
+  <Header />
   <main class="relative z-10 container mx-auto px-6">
-    
-    
-
-    <!-- 1. HERO SECTION -->
-    <section id="inicio" class="min-h-screen flex flex-col justify-center items-center text-center">
-     
-
-      <h1 class="text-6xl md:text-8xl font-black tracking-tighter mb-6 bg-clip-text text-transparent bg-gradient-to-b from-slate-950 to-slate-500 dark:from-white dark:to-slate-500">
-        Fullstack <br /> Developer.
-      </h1>
-
-      <p class="max-w-xl text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-10 leading-relaxed">
-        Especializado en construir experiencias digitales excepcionales con <span class="text-slate-900 dark:text-white font-semibold">React, Node y Astro.</span>
-      </p>
-
-      <a href="./projects.astro">fasds</a>
-      <div class="flex flex-wrap justify-center gap-4">
-        <a href="#proyectos" class="px-8 py-4 bg-indigo-600 text-white rounded-2xl font-bold hover:bg-indigo-700 transition-all hover:scale-105 shadow-lg shadow-indigo-500/25">
-          Ver Proyectos
-        </a>
-        <div class="flex gap-2">
-          <a href="#" class="p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
-            <Github size={24} />
-          </a>
-          <a href="#" class="p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
-            <Linkedin size={24} />
+    <!-- 1.Projects -->
+    <section class="py-20 bg-white dark:bg-slate-900/50" id="work">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="flex items-end justify-between mb-12">
+          <div>
+            <h2
+              class="font-display text-3xl md:text-4xl text-slate-900 dark:text-white mb-2"
+            >
+              Selected Works
+            </h2>
+            <p class="text-slate-500 dark:text-slate-500">
+              Curated digital products &amp; interfaces.
+            </p>
+          </div>
+          <a
+            class="hidden md:flex items-center text-primary font-medium hover:text-indigo-400 transition-colors group"
+            href="#"
+          >
+            View all projects
+            <span
+              class="material-icons text-sm ml-1 group-hover:translate-x-1 transition-transform"
+              >arrow_forward</span
+            >
           </a>
         </div>
+        <ProjectCard />
       </div>
     </section>
 
-    <!-- 2. TECH STACK (Minimalista) -->
-    <section class="py-20 border-y border-slate-200 dark:border-slate-800/50">
-      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 opacity-50 grayscale hover:grayscale-0 transition-all">
-        <div class="flex items-center justify-center gap-2 font-bold"><Code2 /> React</div>
-        <div class="flex items-center justify-center gap-2 font-bold"><Terminal /> Node.js</div>
-        <div class="flex items-center justify-center gap-2 font-bold"><Cpu /> Astro</div>
-        <div class="flex items-center justify-center gap-2 font-bold"><Globe /> Tailwind</div>
-        <div class="flex items-center justify-center gap-2 font-bold"><Code2 /> TypeScript</div>
-        <div class="flex items-center justify-center gap-2 font-bold"><Terminal /> SQL</div>
-      </div>
-    </section>
+  
 
-    <!-- 3. FEATURED PROJECTS -->
-    <section id="proyectos" class="py-32">
-      <div class="flex justify-between items-end mb-16">
-        <div>
-          <h2 class="text-4xl font-bold mb-4">Proyectos Destacados</h2>
-          <p class="text-slate-500">Una selección de mis trabajos más recientes.</p>
-        </div>
-        <a href="/proyectos" class="text-indigo-600 font-bold hover:underline">Ver todos los proyectos →</a>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-        <!-- Proyecto 1 -->
-        <div class="group cursor-pointer">
-          <div class="relative aspect-video bg-slate-200 dark:bg-slate-800 rounded-3xl mb-6 overflow-hidden border border-slate-200 dark:border-slate-700">
-            <div class="absolute inset-0 bg-indigo-600/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-               <ExternalLink size={48} class="text-white" />
-            </div>
-            <!-- Aquí iría la imagen -->
-          </div>
-          <h3 class="text-2xl font-bold mb-2 group-hover:text-indigo-600 transition-colors">E-Commerce Platform</h3>
-          <p class="text-slate-500 dark:text-slate-400 line-clamp-2">Una solución completa de comercio electrónico con pagos integrados y panel de administración en tiempo real.</p>
-        </div>
-
-        <!-- Proyecto 2 -->
-        <div class="group cursor-pointer">
-          <div class="relative aspect-video bg-slate-200 dark:bg-slate-800 rounded-3xl mb-6 overflow-hidden border border-slate-200 dark:border-slate-700">
-            <div class="absolute inset-0 bg-indigo-600/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-               <ExternalLink size={48} class="text-white" />
-            </div>
-          </div>
-          <h3 class="text-2xl font-bold mb-2 group-hover:text-indigo-600 transition-colors">AI Dashboard SaaS</h3>
-          <p class="text-slate-500 dark:text-slate-400 line-clamp-2">Visualización de datos complejos utilizando inteligencia artificial para análisis predictivo de mercados.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 4. BENTO ABOUT SECTION -->
+    <!-- 2. BENTO ABOUT SECTION -->
     <section id="sobre-mi" class="py-32">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[200px]">
-        
-        <div class="md:col-span-2 md:row-span-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2.5rem] p-10 flex flex-col justify-end">
+        <div
+          class="md:col-span-2 md:row-span-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2.5rem] p-10 flex flex-col justify-end"
+        >
           <h3 class="text-3xl font-bold mb-4">Mi Filosofía</h3>
           <p class="text-slate-500 dark:text-slate-400 text-lg">
-            No solo escribo código; diseño soluciones. Me obsesiona el rendimiento, la accesibilidad y los detalles que hacen que una web se sienta "viva".
+            No solo escribo código; diseño soluciones. Me obsesiona el
+            rendimiento, la accesibilidad y los detalles que hacen que una web
+            se sienta "viva".
           </p>
         </div>
 
-        <div class="bg-indigo-600 rounded-[2.5rem] p-8 text-white flex flex-col justify-center items-center text-center">
+        <div
+          class="bg-indigo-600 rounded-[2.5rem] p-8 text-white flex flex-col justify-center items-center text-center"
+        >
           <span class="text-5xl font-black italic">+3</span>
           <p class="font-medium opacity-80">Años de experiencia</p>
         </div>
 
-        <div class="bg-slate-100 dark:bg-slate-800 rounded-[2.5rem] p-8 flex items-center justify-center">
-           <p class="text-xl font-bold text-center">Madrid, España 📍</p>
+        <div
+          class="bg-slate-100 dark:bg-slate-800 rounded-[2.5rem] p-8 flex items-center justify-center"
+        >
+          <p class="text-xl font-bold text-center">Madrid, España 📍</p>
         </div>
 
-        <div class="md:col-span-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2.5rem] p-8 flex items-center justify-between">
-            <p class="text-xl font-bold italic">"El código es poesía escrita para que la entiendan las máquinas."</p>
-            <div class="flex gap-2">
-                <div class="h-12 w-12 rounded-full bg-slate-200 dark:bg-slate-700"></div>
-                <div class="h-12 w-12 rounded-full bg-slate-200 dark:bg-slate-700"></div>
+        <div
+          class="md:col-span-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2.5rem] p-8 flex items-center justify-between"
+        >
+          <p class="text-xl font-bold italic">
+            "El código es poesía escrita para que la entiendan las máquinas."
+          </p>
+          <div class="flex gap-2">
+            <div class="h-12 w-12 rounded-full bg-slate-200 dark:bg-slate-700">
             </div>
+            <div class="h-12 w-12 rounded-full bg-slate-200 dark:bg-slate-700">
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -132,18 +105,23 @@ import Header from '../components/Header.astro';
     <!-- 5. CONTACT PREVIEW -->
     <section class="py-32 text-center">
       <h2 class="text-5xl md:text-7xl font-bold mb-8">¿Hablamos?</h2>
-      <p class="text-xl text-slate-500 mb-12">Estoy siempre abierto a escuchar nuevas ideas y proyectos interesantes.</p>
-      <a href="mailto:tu@email.com" class="text-3xl md:text-4xl font-black text-indigo-600 underline underline-offset-8 decoration-2 hover:text-indigo-500 transition-colors">
+      <p class="text-xl text-slate-500 mb-12">
+        Estoy siempre abierto a escuchar nuevas ideas y proyectos interesantes.
+      </p>
+      <a
+        href="mailto:tu@email.com"
+        class="text-3xl md:text-4xl font-black text-indigo-600 underline underline-offset-8 decoration-2 hover:text-indigo-500 transition-colors"
+      >
         hola@tunombre.com
       </a>
     </section>
-
   </main>
 
-  <footer class="py-12 border-t border-slate-200 dark:border-slate-800 text-center text-slate-500 text-sm">
+  <footer
+    class="py-12 border-t border-slate-200 dark:border-slate-800 text-center text-slate-500 text-sm"
+  >
     <p>© 2025 Diseñado y programado por Javier.</p>
   </footer>
-
 </Layout>
 
 <style>

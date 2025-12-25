@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Javier Fontes Basabe - Portfolio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#6366f1", // Indigo 500 - Captures the twilight sky feel, works on light/dark
+                        "background-light": "#f8fafc", // Slate 50 - Airy, cloud-like
+                        "background-dark": "#0f172a", // Slate 900 - Deep night sky
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1e293b",
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Playfair Display', 'serif'],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                    },
+                    backgroundImage: {
+                        'dawn-gradient': 'linear-gradient(to bottom right, #e0e7ff, #f3e8ff, #ffedd5)', // Light mode sky mimic
+                        'dusk-gradient': 'linear-gradient(to bottom right, #1e1b4b, #312e81, #4c1d95)', // Dark mode sky mimic
+                    }
+                },
+            },
+        };
+    </script>
+<style>::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background-color: #334155;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200 transition-colors duration-500 font-sans selection:bg-primary selection:text-white">
+<nav class="fixed w-full z-50 backdrop-blur-md bg-white/70 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800 transition-all duration-300">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<a class="font-display font-bold text-xl tracking-tight text-slate-900 dark:text-white hover:text-primary transition-colors" href="#">
+                Javier Fontes Basabe
+            </a>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors" href="#work">Work</a>
+<a class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors" href="#photography">Photography</a>
+<a class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors" href="#about">About</a>
+<a class="px-5 py-2.5 bg-primary text-white text-sm font-medium rounded-full shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5 transition-all duration-300" href="#contact">
+                    Let's Talk
+                </a>
+</div>
+<button class="md:hidden text-slate-600 dark:text-slate-300">
+<span class="material-icons">menu</span>
+</button>
+</div>
+</nav>
+<header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+<div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-purple-200 dark:bg-indigo-900/30 blur-3xl opacity-50 pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-orange-100 dark:bg-purple-900/20 blur-3xl opacity-50 pointer-events-none"></div>
+<div class="max-w-7xl mx-auto px-6 relative z-10">
+<div class="max-w-4xl">
+<h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-medium leading-tight mb-8 bg-clip-text text-transparent bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900 dark:from-white dark:via-slate-200 dark:to-slate-400">
+                    Designing with <br/>
+<span class="italic text-primary font-serif">perspective.</span>
+</h1>
+<p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mb-10">
+                    I am Javier Fontes Basabe, a creative developer and photographer inspired by the quiet moments between dusk and dawn. I build minimalist digital experiences that breathe.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="inline-flex items-center justify-center px-8 py-3.5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium rounded-full hover:bg-slate-800 dark:hover:bg-slate-100 transition-all duration-300" href="#work">
+                        View Projects
+                    </a>
+<a class="inline-flex items-center justify-center px-8 py-3.5 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-full hover:bg-slate-50 dark:hover:bg-slate-800 transition-all duration-300" href="#photography">
+                        See Photography
+                    </a>
+</div>
+</div>
+</div>
+</header>
+<section class="py-20 bg-white dark:bg-slate-900/50" id="work">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex items-end justify-between mb-12">
+<div>
+<h2 class="font-display text-3xl md:text-4xl text-slate-900 dark:text-white mb-2">Selected Works</h2>
+<p class="text-slate-500 dark:text-slate-500">Curated digital products &amp; interfaces.</p>
+</div>
+<a class="hidden md:flex items-center text-primary font-medium hover:text-indigo-400 transition-colors group" href="#">
+                    View all projects 
+                    <span class="material-icons text-sm ml-1 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+<article class="group cursor-pointer">
+<div class="relative overflow-hidden rounded-2xl bg-slate-100 dark:bg-slate-800 aspect-[4/3] mb-6">
+<div class="absolute inset-0 bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-800 group-hover:scale-105 transition-transform duration-500 flex items-center justify-center">
+<span class="material-icons text-6xl text-slate-400/50 dark:text-slate-600/50">desktop_mac</span>
+</div>
+</div>
+<h3 class="text-xl font-display font-semibold text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors">Skyline Architecture</h3>
+<p class="text-slate-600 dark:text-slate-400 line-clamp-2">A minimalist architectural portfolio focused on vertical rhythm and open spaces.</p>
+<div class="mt-4 flex gap-2">
+<span class="text-xs font-medium px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-md">React</span>
+<span class="text-xs font-medium px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-md">Tailwind</span>
+</div>
+</article>
+<article class="group cursor-pointer md:mt-12">
+<div class="relative overflow-hidden rounded-2xl bg-slate-100 dark:bg-slate-800 aspect-[4/3] mb-6">
+<div class="absolute inset-0 bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900/40 dark:to-purple-900/40 group-hover:scale-105 transition-transform duration-500 flex items-center justify-center">
+<span class="material-icons text-6xl text-indigo-300/50 dark:text-indigo-500/50">smartphone</span>
+</div>
+</div>
+<h3 class="text-xl font-display font-semibold text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors">Lumina App</h3>
+<p class="text-slate-600 dark:text-slate-400 line-clamp-2">A weather tracking application focusing on gradients and atmospheric conditions.</p>
+<div class="mt-4 flex gap-2">
+<span class="text-xs font-medium px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-md">SwiftUI</span>
+<span class="text-xs font-medium px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-md">API</span>
+</div>
+</article>
+</div>
+</div>
+</section>
+<section class="py-20 relative overflow-hidden" id="photography">
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-slate-100/50 to-transparent dark:via-slate-800/30 opacity-50 pointer-events-none"></div>
+<div class="max-w-7xl mx-auto px-6 relative z-10">
+<div class="text-center max-w-2xl mx-auto mb-16">
+<span class="text-primary font-medium tracking-wider uppercase text-xs mb-3 block">Perspectives</span>
+<h2 class="font-display text-3xl md:text-5xl text-slate-900 dark:text-white mb-6">Chasing Light</h2>
+<p class="text-slate-600 dark:text-slate-400">
+                    Photography is where I explore composition and color. The gradients of the sky at dusk and the stark silhouettes of the city inform my design aesthetic.
+                </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="relative group rounded-3xl overflow-hidden shadow-2xl shadow-indigo-100 dark:shadow-none">
+<img alt="City skyline at dusk with a gradient sky from blue to orange" class="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2Caa6irhBg5Jm99bD8LKkWgDCQOpm218_Mh5EAIVI9eclNXWwR90Sog9Lo4UwlQYAQyWNd9CGxCazeEXdcyTzNe-gUZ4Inc2-9cCpPM33yn7L_b6uLvqFWBik0eb7DmosByDNNqJ7YxjQ8j-XM5peqtGEZjei_SH63vUY0AnXt-LalaBBNRb99WsjxupcvO-xV0Jn7lAv-AO6t8ITvUPsMASY4nP1tdycDc_tBvtCR35LT_961OZ3iPr00p6KCuYEcbcoBGeGGuv4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+<div class="absolute bottom-0 left-0 p-8">
+<span class="text-xs font-medium text-orange-300 uppercase tracking-widest mb-2 block">Dusk</span>
+<h3 class="text-white font-display text-2xl">City Silhouettes</h3>
+</div>
+</div>
+<div class="relative group rounded-3xl overflow-hidden shadow-2xl shadow-indigo-100 dark:shadow-none mt-0 md:mt-20">
+<img alt="Dark stormy clouds over a city skyline silhouette" class="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7T21iZWfu0yCxRn5CtK3qgx5p2IUhPiMsUtiuvH-fR85wSF-_J503j9Sv5MrBan6hEQFPhVMKVVBTLmqtm_twrMO_A-gB4iQT1RU0mqpKe5LRuC2ZKMKR2McDE8M6pciWr_mumrzIOzLcG4ZFSmGrwTAKd4vxU42UqFqpotSpaUXEh2vtkEMC0sPdCHTbTt8-6F8ntzNaVuLeP1WenSrBVv47pAa-ZYD2YCz4u5oNrZgJjDFWDwSeQpdQwS14PlMq7rYw-Z7w7aRu"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+<div class="absolute bottom-0 left-0 p-8">
+<span class="text-xs font-medium text-blue-300 uppercase tracking-widest mb-2 block">Storm</span>
+<h3 class="text-white font-display text-2xl">Atmospheric Contrast</h3>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 bg-slate-50 dark:bg-slate-800/50" id="about">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col lg:flex-row gap-16 items-start">
+<div class="lg:w-1/2">
+<h2 class="font-display text-3xl md:text-4xl text-slate-900 dark:text-white mb-6">A minimalist approach to complex problems.</h2>
+<div class="prose dark:prose-invert text-slate-600 dark:text-slate-400">
+<p class="mb-4">
+                            My name is Javier. I blend technical expertise with a photographer's eye for detail. I believe that good design is invisible—it just works. 
+                        </p>
+<p>
+                            Inspired by the natural gradients of the sky and the structural integrity of city skylines, my work aims to bring a sense of calm and clarity to the chaotic web. Whether I'm writing clean code or capturing a moment in time, my goal is authenticity.
+                        </p>
+</div>
+<div class="mt-8 pt-8 border-t border-slate-200 dark:border-slate-700 grid grid-cols-2 gap-6">
+<div>
+<h4 class="font-bold text-slate-900 dark:text-white mb-2">Development</h4>
+<ul class="text-sm text-slate-600 dark:text-slate-400 space-y-1">
+<li>Frontend Architecture</li>
+<li>React / Vue / Angular</li>
+<li>Tailwind CSS System</li>
+<li>Performance Optimization</li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 dark:text-white mb-2">Design</h4>
+<ul class="text-sm text-slate-600 dark:text-slate-400 space-y-1">
+<li>UI/UX Prototyping</li>
+<li>Design Systems</li>
+<li>Photography</li>
+<li>Brand Identity</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="lg:w-1/2 w-full">
+<div class="bg-white dark:bg-slate-900 rounded-3xl p-8 shadow-sm border border-slate-100 dark:border-slate-700">
+<div class="flex items-center justify-between mb-8">
+<h3 class="font-display text-xl text-slate-900 dark:text-white">Workflow</h3>
+<span class="material-icons text-slate-300">timeline</span>
+</div>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">Discovery</span>
+<span class="text-sm text-slate-500">20%</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2">
+<div class="bg-indigo-300 h-2 rounded-full" style="width: 20%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">Design &amp; Prototype</span>
+<span class="text-sm text-slate-500">30%</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2">
+<div class="bg-purple-400 h-2 rounded-full" style="width: 30%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">Development</span>
+<span class="text-sm text-slate-500">40%</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 40%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">Deployment</span>
+<span class="text-sm text-slate-500">10%</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2">
+<div class="bg-orange-300 h-2 rounded-full" style="width: 10%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 px-6 text-center" id="contact">
+<div class="max-w-3xl mx-auto">
+<h2 class="font-display text-4xl md:text-5xl text-slate-900 dark:text-white mb-6">Ready to create something authentic?</h2>
+<p class="text-lg text-slate-600 dark:text-slate-400 mb-10">
+                I'm currently available for freelance projects and open to full-time opportunities.
+            </p>
+<a class="inline-flex items-center justify-center px-8 py-4 bg-primary text-white font-medium text-lg rounded-full shadow-lg hover:bg-indigo-700 transition-colors" href="mailto:javier@example.com">
+                Say Hello
+                <span class="material-icons ml-2">mail_outline</span>
+</a>
+</div>
+</section>
+<footer class="py-12 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+<div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="text-center md:text-left">
+<span class="font-display font-bold text-lg text-slate-900 dark:text-white block">Javier Fontes Basabe</span>
+<span class="text-sm text-slate-500 dark:text-slate-500">© 2023 All rights reserved.</span>
+</div>
+<div class="flex space-x-6">
+<a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="sr-only">Twitter</span>
+<svg class="h-5 w-5 fill-current" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.84 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path></svg>
+</a>
+<a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="sr-only">LinkedIn</span>
+<svg class="h-5 w-5 fill-current" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg>
+</a>
+<a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="sr-only">GitHub</span>
+<svg class="h-5 w-5 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg>
+</a>
+</div>
+</div>
+</footer>
+<script>
+        // Simple script to toggle dark mode based on system preference or manual toggle (if added)
+        // Checks local storage or system preference
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+
+</body></html>
