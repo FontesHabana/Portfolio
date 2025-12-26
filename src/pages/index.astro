@@ -1,7 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
 //import BackgroundLines from '../components/BackgroundLines.jsx';
-import PageTransition from "../components/PageTransition.jsx";
 import {
   Github,
   Linkedin,
@@ -18,9 +17,6 @@ import ProjectCard from "../components/ProjectCard.astro";
 ---
 
 <Layout title="Tu Nombre | Fullstack Developer">
-  <!-- Componentes de Animación -->
-  <PageTransition client:load />
-
   <!-- Menu -->
   <nav class="fixed top-0 right-0 w-full justify-end z-50 flex p-6">
     <Dropdown client:load />
@@ -102,7 +98,7 @@ import ProjectCard from "../components/ProjectCard.astro";
 <p class="text-lg text-slate-600 dark:text-slate-400 mb-10">
                 I'm currently available for freelance projects and open to full-time opportunities.
             </p>
-<a class="inline-flex items-center justify-center px-8 py-4 bg-slate-900 text-white font-medium text-lg rounded-full shadow-lg hover:bg-slate-700 transition-colors" href="mailto:javierfontbas@gmail.com">
+<a class="inline-flex items-center justify-center px-8 py-4 bg-slate-900 text-white font-medium text-lg rounded-full shadow-lg hover:bg-slate-800 transition-colors" href="mailto:javierfontbas@gmail.com">
                 Say Hello
                 <span class="material-icons ml-2">mail_outline</span>
 </a>
