@@ -23,7 +23,7 @@ import ProjectCard from "../components/ProjectCard.astro";
   </nav>
   <!--Presentation -->
   <Header />
-  <main class="relative z-10 container mx-auto">
+  <main class="relative z-10  mx-auto">
     <!-- 1.Projects -->
     <section class="py-20 bg-white dark:bg-slate-900/50" id="work">
       <div class="max-w-7xl mx-auto px-6">
@@ -40,10 +40,10 @@ import ProjectCard from "../components/ProjectCard.astro";
           </div>
          
         </div>
-        <ProjectCard />
+        <ProjectCard onlyMain={true}/>
        <a
             class="hidden mt-20 md:flex items-center text-primary font-medium  text-xl hover:text-indigo-400 transition-colors group"
-            href="#"
+            href="./projects"
           >
             View all projects
             <span
@@ -55,19 +55,19 @@ import ProjectCard from "../components/ProjectCard.astro";
     </section>
 
     <!-- 2. BENTO ABOUT SECTION -->
-    <section class="py-20 mt-30 bg-slate-50 dark:bg-slate-800/50 overflow-hidden  relative" id="about">
+    <section class="py-30   bg-slate-50 dark:bg-slate-800/50 overflow-hidden  relative" id="about">
       <div class="mx-auto px-40 ">
         <div class="absolute -bottom-10 right-0 -mr-20 -mb-20 w-96 h-96 rounded-full bg-purple-200 dark:bg-indigo-900/30 blur-3xl opacity-50 pointer-events-none"></div>
     <div class="absolute top-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-orange-100 dark:bg-purple-900/20 blur-3xl opacity-50 pointer-events-none"></div>
         <div class=" relative flex flex-col lg:flex-row gap-16 items-start">
           <div class="lg:w-1/2">
             <h2
-              class="font-display text-3xl md:text-4xl text-slate-900 dark:text-white mb-6"
+              class="font-display text-4xl md:text-4xl text-slate-900 dark:text-white mb-6"
             >
               A minimalist approach to complex problems.
             </h2>
             <div
-              class="prose dark:prose-invert text-slate-600 dark:text-slate-400"
+              class="prose text-xl dark:prose-invert text-slate-600 dark:text-slate-400"
             >
               <p class="mb-4">
                 My name is Javier. I blend technical expertise with a
