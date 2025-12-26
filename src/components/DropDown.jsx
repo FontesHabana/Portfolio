@@ -100,7 +100,7 @@ export default function Dropdown() {
               </div>
             </a>
             <a
-              href="#"
+              href="./projects"
               className="py-1 my-1 relative h-12 overflow-hidden text-black hover:bg-blue-100 hover:scale-105 rounded-full transition-colors"
             >
               <div className="px-4   flex flex-col transition-transform duration-500 hover:-translate-y-1/2">
