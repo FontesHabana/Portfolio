@@ -2,7 +2,10 @@
 // 1. Importar las transiciones de Astro
 import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css'; // Asumiendo que crearás este archivo
-
+// Supports weights 400-900
+import '@fontsource-variable/playfair-display';
+// Supports weights 100-900
+import '@fontsource-variable/inter';
 import Header from '../components/Header.astro';
 
 
@@ -69,11 +72,18 @@ const { title, lang = "es" } = Astro.props;
 <style is:global>
 html{
     font-family: system-ui,  sans-serif;
+    
 }
 body{
     
     justify-content: center;
 }
 
+.display{
+    font-family: "Playfair Display Variable", serif;
+}
+.inter{
+    font-family: "Inter Variable", sans-serif;
+}
 
 </style>

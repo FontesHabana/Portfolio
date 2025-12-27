@@ -1,6 +1,5 @@
 import { div } from "framer-motion/client";
 import React, { useState } from "react";
-
 export default function Dropdown() {
   const [isOpen, setIsOpen] = useState(false);
 
