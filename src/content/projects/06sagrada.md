@@ -7,7 +7,10 @@ github: a
 tech: 
     - Spectre.Console 
     - C# 
-
+gallery:
+    - ../../../public/assets/background.webp
+    - ../../../public/assets/background.webp
+    - ../../../public/assets/background.webp
 main: false
 ---
 

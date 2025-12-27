@@ -2,13 +2,16 @@
 title: AlternaWorld
 imgbg: public\assets\background.webp
 imgfront: public\assets\front.webp
-deploy: s
-github: s
+deploy: a
+github: 
 tech: 
     - html 
     - css 
     - js
-
+gallery:
+    - ../../../public/assets/background.webp
+    - ../../../public/assets/background.webp
+    - ../../../public/assets/background.webp
 main: true
 
 ---

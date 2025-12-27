@@ -1,17 +1,14 @@
 ---
-title: PixelWallE
-imgbg: public\assets\background.webp
-imgfront: public\assets\front.webp
-deploy: s
-github: s
-tech: 
-    - C#
-    - Godot 
-gallery:
-    - ../../../public/assets/background.webp
-    - ../../../public/assets/background.webp
-    - ../../../public/assets/background.webp
-main: false
+company: AlternaWorld
+position: Tech Lead
+startdate: May 2025
+enddate: Actualidad
+achivements: 
+    - html 
+    - css 
+    - js
+
+
 ---
 
 

@@ -7,12 +7,37 @@ const projects=defineCollection({
         title:z.string(),
         imgbg:z.string(),
         imgfront:z.string(),
-        deploy:z.string(),
-        github:z.string(),
+        deploy:z.string().nullable(),
+        github:z.string().nullable(),
         tech:z.array(z.string()),
+        gallery:z.array(z.string()),
         main:z.boolean().default(false),
 
     }),
 });
 
-export const collections={projects}
+const work=defineCollection({
+    schema:z.object({
+        company:z.string(),
+        position:z.string(),
+        startdate:z.string(),
+        enddate:z.string(),
+        achivements:z.array(z.string().optional()),
+
+    })
+});
+
+const studies=defineCollection({
+    schema:z.object({
+        company:z.string(),
+        level:z.string(),
+        startdate:z.string(),
+        enddate:z.string(),
+        achivements:z.array(z.string().optional()),
+
+    })
+});
+
+export const collections={projects, work,studies}
+
+

@@ -8,7 +8,10 @@ tech:
     - html 
     - tailwindcss 
     - react
-
+gallery:
+    - ../../../public/assets/background.webp
+    - ../../../public/assets/background.webp
+    - ../../../public/assets/background.webp
 main: true
 ---
 

@@ -1,17 +1,14 @@
 ---
-title: PixelWallE
-imgbg: public\assets\background.webp
-imgfront: public\assets\front.webp
-deploy: s
-github: s
-tech: 
-    - C#
-    - Godot 
-gallery:
-    - ../../../public/assets/background.webp
-    - ../../../public/assets/background.webp
-    - ../../../public/assets/background.webp
-main: false
+company: Universida de la Habana
+level: Degree
+startdate: Sept 2024
+enddate: Actualidad
+achivements: 
+    - ICPC qualifiers contestant 
+    - Jornada Cientifica 
+    - Alumno Ayudante
+
+
 ---
 
 

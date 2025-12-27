@@ -9,7 +9,10 @@ tech:
     - tailwindcss 
     - react
     - C#
-
+gallery:
+    - ../../../public/assets/background.webp
+    - ../../../public/assets/background.webp
+    - ../../../public/assets/background.webp
 main: false
 ---
 

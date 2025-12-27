@@ -1,0 +1,196 @@
+---
+import Layout from "../layouts/Layout.astro";
+//import BackgroundLines from '../components/BackgroundLines.jsx';
+
+import Dropdown from "../components/DropDown.jsx";
+import Footer from "../components/Footer.astro";
+
+
+import { getCollection } from 'astro:content';
+import { span } from 'framer-motion/client';
+
+const work =await getCollection('work') 
+const studies =await getCollection('studies') 
+---
+
+<Layout title="Tu Nombre | Fullstack Developer">
+<nav class="fixed top-0 right-0 w-full justify-end z-50 flex p-6">
+    <Dropdown client:load />
+  </nav>
+<div class="relative flex min-h-screen   w-full flex-col overflow-x-hidden">
+
+<main class="flex-grow w-full bg-purple-50  mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+<div class=" flex-grow w-full max-w-5xl  mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+<section class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-24">
+<div class="order-2 md:order-1 flex flex-col gap-6">
+<h1 class="font-display text-3xl md:text-4xl lg:text-6xl font-medium leading-tight mb-1 bg-clip-text text-transparent bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900 dark:from-white dark:via-slate-200 dark:to-slate-400">
+                   Architecting <span class="italic text-primary font-serif">scalable</span> digital solutions. 
+</h1>
+<div class="prose prose-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+<p>
+                            Hi, I'm Javier. I am a software developer with a passion for clean code and problem-solving. Specializing in full-stack development, I build robust web applications that scale.
+                        </p>
+<p class="mt-4 text-base">
+                            With over 5 years of experience, I bridge the gap between complex backend logic and intuitive frontend design. My goal is to create meaningful digital products that improve user lives.
+                        </p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="inline-flex items-center justify-center px-8 py-3.5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium rounded-full hover:bg-slate-800 dark:hover:bg-slate-100 transition-all duration-300" href="#work">
+                        View Projects
+                    </a>
+<a class="inline-flex items-center justify-center px-8 py-3.5 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-full hover:bg-slate-50 dark:hover:bg-slate-800 transition-all duration-300" href="#photography">
+                        CV
+                    </a>
+</div>
+</div>
+<div class="order-1 md:order-2 flex justify-center md:justify-end">
+<div class="relative w-full max-w-sm aspect-square">
+<div class="absolute inset-0 bg-blue-200 dark:bg-blue-900/20 rounded-2xl rotate-3 transform transition-transform"></div>
+<div class="absolute inset-0 bg-slate-100 dark:bg-slate-800 rounded-2xl -rotate-3 transform transition-transform"></div>
+<div class="relative h-full w-full overflow-hidden rounded-2xl bg-white shadow-xl border border-slate-100 dark:border-slate-700">
+<img src="../../public/assets/front.webp" alt="">
+</div>
+</div>
+</div>
+</section>
+<div class="w-full h-px bg-slate-200 dark:bg-slate-800 mb-20"></div>
+<section class="mb-24">
+<div class="flex flex-col md:flex-row md:items-start gap-12">
+<div class="md:w-1/3 sticky top-24">
+<h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-4">Technical Proficiency</h2>
+<p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                            My tech stack is focused on modern, scalable technologies. I am constantly learning and adapting to the best tools for the job.
+                        </p>
+</div>
+<div class="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-8">
+<div class="space-y-4">
+<h3 class="text-sm font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">Languages</h3>
+<div class="flex flex-wrap gap-2">
+<span class="skill-tag">Python</span>
+<span class="skill-tag">C#</span>
+<span class="skill-tag">C++</span>
+<span class="skill-tag">JavaScript</span>
+<span class="skill-tag">HTML5 &amp; CSS3</span>
+</div>
+</div>
+<div class="space-y-4">
+<h3 class="text-sm font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">Frameworks</h3>
+<div class="flex flex-wrap gap-2">
+<span class="skill-tag">React.js</span>
+<span class="skill-tag">Tailwind CSS</span>
+<span class="skill-tag">Astro</span>
+<span class="skill-tag">Streamlit</span>
+<span class="skill-tag">SpectreConsole</span>
+</div>
+</div>
+<div class="space-y-4">
+<h3 class="text-sm font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">Tools &amp; DevOps</h3>
+<div class="flex flex-wrap gap-2">
+<span class="skill-tag">Git &amp; GitHub</span>
+</div>
+</div>
+<div class="space-y-4">
+<h3 class="text-sm font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">Design</h3>
+<div class="flex flex-wrap gap-2">
+<span class="skill-tag">UI/UX Principles</span>
+<span class="skill-tag">Responsive Design</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+
+
+
+
+<section class="mb-12">
+<div class="flex flex-col md:flex-row md:items-start gap-12">
+<div class="md:w-1/3 sticky top-24">
+<h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-4">Work History</h2>
+<p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                            A timeline of my professional journey in the software industry, highlighting key roles and achievements.
+                        </p>
+</div>
+<div class="md:w-2/3 space-y-8">
+
+  {
+    work.map((work: { slug: any; data: any; }) => {
+        const { slug, data } = work;
+        const { company, position, startdate, enddate, achivements } = data;
+        return (
+            <div class="relative pl-8 border-l border-slate-200 dark:border-slate-800 space-y-2" key={slug}>
+                <div class="absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full bg-primary ring-4 ring-white dark:ring-[#111827]"></div>
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">{position}</h3>
+                    <span class="text-sm font-medium text-slate-500 dark:text-slate-400 tabular-nums">{startdate} — {enddate}</span>
+                </div>
+                <div class="text-primary font-medium text-sm">{company}</div>
+                {achivements && Array.isArray(achivements) && (
+                    <ul class="list-disc list-outside ml-4 mt-2 space-y-1 text-sm text-slate-600 dark:text-slate-400 marker:text-slate-400">
+                        {achivements.map((item: string) => (
+                            <li>{item}</li>
+                        ))}
+                    </ul>
+                )}
+            </div>
+        );
+    })
+}
+
+
+
+
+</div>
+</div>
+</section>
+
+
+
+<section class="mb-12">
+<div class="flex flex-col md:flex-row md:items-start gap-12">
+<div class="md:w-1/3 sticky top-24">
+<h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-4">Studies</h2>
+<p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio labore ipsam voluptas animi cupiditate asperiores eos? Cupiditate placeat nihil obcaecati, minus doloremque non vel adipisci eligendi nobis, sequi eaque iste?
+                        </p>
+</div>
+<div class="md:w-2/3 space-y-8">
+
+  {
+    studies.map((studies: { slug: any; data: any; }) => {
+        const { slug, data } = studies;
+        const { company, level, startdate, enddate, achivements } = data;
+        return (
+            <div class="relative pl-8 border-l border-slate-200 dark:border-slate-800 space-y-2" key={slug}>
+                <div class="absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full bg-primary ring-4 ring-white dark:ring-[#111827]"></div>
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">{level}</h3>
+                    <span class="text-sm font-medium text-slate-500 dark:text-slate-400 tabular-nums">{startdate} — {enddate}</span>
+                </div>
+                <div class="text-primary font-medium text-sm">{company}</div>
+                {achivements && Array.isArray(achivements) && (
+                    <ul class="list-disc list-outside ml-4 mt-2 space-y-1 text-sm text-slate-600 dark:text-slate-400 marker:text-slate-400">
+                        {achivements.map((item: string) => (
+                            <li>{item}</li>
+                        ))}
+                    </ul>
+                )}
+            </div>
+        );
+    })
+}
+
+
+
+
+</div>
+</div>
+</section>
+</div>
+
+</main>
+
+  <Footer />
+</Layout>

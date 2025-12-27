@@ -1,17 +1,14 @@
 ---
-title: PixelWallE
-imgbg: public\assets\background.webp
-imgfront: public\assets\front.webp
-deploy: s
-github: s
-tech: 
-    - C#
-    - Godot 
-gallery:
-    - ../../../public/assets/background.webp
-    - ../../../public/assets/background.webp
-    - ../../../public/assets/background.webp
-main: false
+company: IPVCE Vladimir Ilich Lenin
+level: High School
+startdate: Nov 2020
+enddate: Oct 2023
+achivements: 
+    - Preseleccion Nacional 
+    - Igo Medal 
+    - COncurso nacional
+
+
 ---
 
 

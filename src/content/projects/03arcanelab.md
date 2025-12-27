@@ -7,7 +7,10 @@ github: s
 tech: 
     - python 
     - Streamlit 
-
+gallery:
+    - ../../../public/assets/background.webp
+    - ../../../public/assets/background.webp
+    - ../../../public/assets/background.webp
 main: false
 ---
 
