@@ -5,17 +5,13 @@ import Layout from "../../layouts/Layout.astro";
 import Dropdown from "../../components/DropDown.jsx";
 import Footer from "../../components/Footer.astro";
 
-const images=[
-    "../../../public/assets/background.webp",
-    "../../../public/assets/background.webp",
-    "../../../public/assets/background.webp",
-]
+
 
 
 import { getEntry } from "astro:content";
 import { getEntries } from "astro:content";
 import { promise } from "astro:schema";
-const project=await getEntry('projects',"02mumind")
+const project=await getEntry('projects',"06sagrada")
 
 
 ---
@@ -104,5 +100,4 @@ const project=await getEntry('projects',"02mumind")
     </div> 
   </main>
 
-  <Footer />
 </Layout>

@@ -7,20 +7,20 @@ const { onlyMain = true } = Astro.props;
 
 const projects =onlyMain? await getCollection('projects', ({data})=>data.main===true) : await getCollection('projects')
 ---
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+<a href={} class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
   {
   projects.map((project: { slug: any; data: any; }, index) =>
   {
     const {slug, data}=project
-    const {title, imgbg, imgfront, deploy, github, tech,main }=data
+    const {title,subtitle, imgbg, imgfront, deploy, github, tech,main }=data
 
     return(
       <article class={`group cursor-pointer md:mt-12 ${index % 2===1? 'translate-y-6': ''}`}>
-        <div class="relative overflow-hidden rounded-2xl bg-slate-100 dark:bg-slate-800 aspect-[4/3] mb-1">
-<div class="absolute inset-0 bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900/40 dark:to-purple-900/40  transition-transform duration-500 flex items-center justify-center">
+        <div class="relative overflow-hidden rounded-2xl  dark:bg-slate-800 aspect-[4/3] mb-1">
+<div class="absolute inset-0 dark:from-indigo-900/40 dark:to-purple-900/40  transition-transform duration-500 flex items-center justify-center">
 <span class=" text-6xl text-indigo-300/50 dark:text-indigo-500/50">
-    <img src={imgbg} alt={title} class="absolute inset-0 w-full h-full object-cover transition-transform duration-500  group-hover:scale-90  group-hover:blur-[2px]">
-    <img src={imgfront} alt={title} class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110   ">
+    <img src={imgbg} alt={title} class="absolute inset-0 w-full h-full rounded-xl transition-transform duration-500  group-hover:scale-90  group-hover:blur-[2px]">
+    <img src={imgfront} alt={title} class="absolute inset-0 w-full h-full  transition-transform duration-500 group-hover:scale-110 hover:-translate-y-5  ">
     
     
 </span>
@@ -42,10 +42,11 @@ const projects =onlyMain? await getCollection('projects', ({data})=>data.main===
                   
                     <span class="display material-icons  group-hover:translate-x-12 transition-transform">{title}</span>
 </h3>
+<p class="text-md font-semibold  uppercase py-1   text-slate-600 dark:text-slate-300 ">{subtitle}</p>
 
       </article>
     )
     
   })}
 
-</div>
+</a>
