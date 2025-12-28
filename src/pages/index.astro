@@ -9,11 +9,14 @@ import {
   Terminal,
   Cpu,
   Globe,
+  Mail,
 } from "lucide-react";
 import Dropdown from "../components/DropDown.jsx";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro"
 import ProjectCard from "../components/ProjectCard.astro";
+import Arrow from "../components/icons/Arrow.astro";
+import  MailIcon  from "../components/icons/MailIcon.astro";
 ---
 
 <Layout title="Tu Nombre | Fullstack Developer">
@@ -46,10 +49,10 @@ import ProjectCard from "../components/ProjectCard.astro";
             href="./projects"
           >
             View all projects
-            <span
-              class="material-icons text-sm ml-1 group-hover:translate-x-1 transition-transform"
-              >arrow_forward</span
-            >
+            <div class="mt-1 group-hover:translate-x-4 transition-transform">
+              
+            <Arrow class="w-5 h-5"/>
+            </div>
           </a>
       </div>
     </section>
@@ -101,7 +104,7 @@ import ProjectCard from "../components/ProjectCard.astro";
             </p>
 <a class="inline-flex items-center justify-center px-8 py-4 bg-slate-900 text-white font-medium text-lg rounded-full shadow-lg hover:bg-slate-800 transition-colors" href="mailto:javierfontbas@gmail.com">
                 Say Hello
-                <span class="material-icons ml-2">mail_outline</span>
+               <MailIcon class="w-6 h-6  ml-2"></MailIcon>
 </a>
 </div>
 </section>
