@@ -4,7 +4,7 @@ export default function Dropdown() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="relative inline-block text-left">
+    <div className={"relative inline-block text-left"}>
       <button
         onClick={() => setIsOpen(!isOpen)}
         onMouseLeave={() => !isOpen && setIsOpen(false)}
@@ -57,7 +57,10 @@ export default function Dropdown() {
       </button>
 
       {/* MENÚ DESPLEGABLE CON ANIMACIÓN DE CARTA */}
-      <div className="absolute  right-0 mt-3 w-70 ">
+      <div className={`absolute  right-0 mt-3 w-70 {isOpen
+              ? "opacity-100  pointer-events-auto z-50"
+              : " pointer-events-none -z-10"
+          }`}>
         <div
           className={`
            right-0  w-70 p-3 bg-white rounded-[1rem] shadow-2xl ring-1 ring-black/5
@@ -66,7 +69,7 @@ export default function Dropdown() {
           
           ${
             isOpen
-              ? "opacity-100 scale-100 translate-y-0 visible"
+              ? "opacity-100 scale-100 translate-y-0 visible  pointer-events-auto"
               : "opacity-0 -rotate-5 translate-y-10 invisible"
           }
         `}
@@ -136,7 +139,7 @@ export default function Dropdown() {
           
           ${
             isOpen
-              ? "opacity-100 scale-100 translate-y-0 visible"
+              ? "opacity-100 scale-100 translate-y-0 visible pointer-events-auto"
               : "opacity-0 rotate-5 translate-y-20 invisible"
           }
         `}
