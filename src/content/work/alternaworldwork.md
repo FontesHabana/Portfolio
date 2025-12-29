@@ -4,9 +4,9 @@ position: Web & Data Developer
 startdate: May 2025
 enddate: Actualidad
 achivements: 
-    - html 
-    - css 
-    - js
+    - Desarrollo Web.
+    - Optimización de procesos. 
+    - Asistente de producción.
 
 
 ---
