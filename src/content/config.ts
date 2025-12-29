@@ -5,13 +5,15 @@ import { title } from "framer-motion/client";
 const projects=defineCollection({
     schema: z.object({
         title:z.string(),
+        subtitle:z.string(),
         imgbg:z.string(),
         imgfront:z.string(),
-        deploy:z.string().nullable(),
-        github:z.string().nullable(),
+        deploy:z.string().url().nullable(),
+        github:z.string().url().nullable(),
         tech:z.array(z.string()),
         gallery:z.array(z.string()),
         main:z.boolean().default(false),
+        link:z.string(),
 
     }),
 });

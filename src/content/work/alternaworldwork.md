@@ -1,6 +1,6 @@
 ---
 company: AlternaWorld
-position: Tech Lead
+position: Web & Data Developer
 startdate: May 2025
 enddate: Actualidad
 achivements: 
@@ -13,4 +13,5 @@ achivements:
 
 
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet quod quis delectus voluptatibus sunt rerum adipisci dicta quos eveniet alias. Omnis impedit ullam, quasi accusamus facilis amet repellendus dicta necessitatibus?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam aspernatur inventore corporis repellendus quibusdam temporibus modi. Suscipit perspiciatis dicta ipsam deserunt, rerum nihil beatae voluptatibus doloribus autem quas ducimus corrupti. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit, officia placeat fugiat dolore asperiores ex rerum voluptatem aliquam eveniet incidunt alias dolorum possimus similique molestias non nemo praesentium! Iste, facere.
+Responsable del ecosistema digital de AlternaWorld, cubriendo desde el desarrollo hasta la infraestructura técnica. Mi labor abarca la creación y mantenimiento de la plataforma web corporativa, junto con el desarrollo de herramientas personalizadas para la optimización de datos.
+Además de la gestión técnica del sitio, aseguro la continuidad operativa de la empresa mediante el soporte técnico especializado y la resolución de incidencias informáticas, garantizando un entorno digital estable y eficiente.

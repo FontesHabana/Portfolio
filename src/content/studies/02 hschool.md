@@ -1,12 +1,12 @@
 ---
 company: IPVCE Vladimir Ilich Lenin
-level: High School
+level: Bachillerato
 startdate: Nov 2020
 enddate: Oct 2023
 achivements: 
-    - Preseleccion Nacional 
-    - Igo Medal 
-    - COncurso nacional
+    - Miembro de la Preseleccion Nacional de Matemáticas (2023)
+    - Miembro de la Preseleccion Nacional de Matemáticas (2022) 
+    - Mención internacional en la Olimpiada de Geometría Iraní.
 
 
 ---

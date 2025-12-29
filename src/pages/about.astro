@@ -9,6 +9,23 @@ import Footer from "../components/Footer.astro";
 import { getCollection } from 'astro:content';
 import { span } from 'framer-motion/client';
 
+
+
+
+import GitHubIcon from "../components/icons/GitHubIcon.astro";
+import GitIcon from "../components/icons/GitIcon.astro";
+import PythonIcon from "../components/icons/PythonIcon.astro";
+import CSIcon from  "../components/icons/CSIcon.astro";
+import CPPIcon from "../components/icons/CPPIcon.astro";
+import JsIcon from "../components/icons/JsIcon.astro";
+import HTMLIcon from "../components/icons/HTMLIcon.astro";
+import CSSIcon from "../components/icons/CSSIcon.astro";
+import ReactIcon from "../components/icons/ReactIcon.astro";
+import AstroIcon from "../components/icons/AstroIcon.astro";
+import TailwindIcon from "../components/icons/TailwindIcon.astro";
+import StreamlitIcon from "../components/icons/StreamlitIcon.astro";
+
+
 const work =await getCollection('work') 
 const studies =await getCollection('studies') 
 ---
@@ -26,22 +43,22 @@ const studies =await getCollection('studies')
 <section class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-24">
 <div class="order-2 md:order-1 flex flex-col gap-6">
 <h1 class="display text-3xl md:text-4xl lg:text-6xl font-medium leading-tight mb-1 bg-clip-text text-transparent bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900 dark:from-white dark:via-slate-200 dark:to-slate-400">
-                   Architecting <span class="italic text-[#6366f1] font-serif">scalable</span> digital solutions. 
+                    Estructurando  <span class="italic text-[#6366f1] font-serif">soluciones</span> digitales.
 </h1>
 <div class="prose prose-lg text-slate-600 dark:text-slate-400 leading-relaxed">
 <p>
-                            Hi, I'm Javier. I am a software developer with a passion for clean code and problem-solving. Specializing in full-stack development, I build robust web applications that scale.
+                             Soy Javier, desarrollador de software enfocado en la arquitectura de código limpio y la resolución de problemas complejos. Me especializo en el desarrollo Full-Stack, transformando ideas en aplicaciones robustas, eficientes y preparadas para crecer.
                         </p>
 <p class="mt-4 text-base">
-                            With over 5 years of experience, I bridge the gap between complex backend logic and intuitive frontend design. My goal is to create meaningful digital products that improve user lives.
+                            Desde la lógica de sistemas hasta el diseño de interfaces intuitivas, conecto la solidez técnica con una experiencia de usuario fluida. Mi objetivo es desarrollar productos digitales con propósito, donde la precisión del código potencie el valor real del software.
                         </p>
 </div>
-<div class="flex flex-col sm:flex-row gap-4">
+<div class="relative flex flex-col sm:flex-row gap-4">
 <a class="inline-flex items-center justify-center px-8 py-3.5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium rounded-full hover:bg-slate-800 dark:hover:bg-slate-100 transition-all duration-300" href="/Projects">
-                        View Projects
+                        Ver Proyectos
                     </a>
 <a class="inline-flex bg-slate-100 items-center justify-center px-8 py-3.5 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-full hover:bg-slate-50 dark:hover:bg-slate-800 transition-all duration-300" href="#photography">
-                       Download CV
+                       Descagar CV
                     </a>
 </div>
 </div>
@@ -56,47 +73,48 @@ const studies =await getCollection('studies')
 </div>
 </section>
 <div class="w-full h-px bg-slate-200 dark:bg-slate-800 mb-20"></div>
-<section class="mb-24">
+<section class="mb-24">                                 
 
 <div class="flex flex-col md:flex-row md:items-start gap-12">
 <div class="md:w-1/3 sticky top-24">
-<h2 class="text-4xl  display tracking-tight text-slate-900 dark:text-white mb-4">Technical Proficiency</h2>
+<h2 class="text-4xl  display tracking-tight text-slate-900 dark:text-white mb-4">Stack Tecnológico</h2>
 <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
-                            My tech stack is focused on modern, scalable technologies. I am constantly learning and adapting to the best tools for the job.
+                           Enfocado en soluciones modernas y escalables, seleccionando siempre la herramienta más eficiente para cada desafío mediante un aprendizaje continuo.
                         </p>
 </div>
 <div class="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-8">
 <div class="space-y-4">
-<h3 class="text-sm font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">Languages</h3>
+<h3 class="text-sm font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-500">Languages</h3>
 <div class="flex flex-wrap gap-2">
-<span class="skill-tag">Python</span>
-<span class="skill-tag">C#</span>
-<span class="skill-tag">C++</span>
-<span class="skill-tag">JavaScript</span>
-<span class="skill-tag">HTML5 &amp; CSS3</span>
+<span class="flex bg-blue-100 py-1 px-4 rounded-full"> <PythonIcon class="w-5 h-5"/> <p class="ml-2 font-semibold">Python</p></span>
+<span class="flex bg-purple-200 py-1 px-4 rounded-full"> <CSIcon class="w-5 h-5"/> <p class="ml-2 font-semibold">C#</p></span>
+<span class="flex bg-purple-200 py-1 px-4 rounded-full"> <CPPIcon class="w-5 h-5"/> <p class="ml-2 font-semibold">C++</p></span>
+<span class="flex bg-yellow-100 py-1 px-4 rounded-full"> <JsIcon class="w-5 h-5"/> <p class="ml-2 font-semibold">JavaScript</p></span>
+<span class="flex bg-red-100 py-1 px-4 rounded-full"> <HTMLIcon class="w-5 h-5"/> <p class="ml-2 font-semibold">HTML</p></span>
+<span class="flex bg-blue-100 py-1 px-4 rounded-full"> <CSSIcon class="w-5 h-5"/> <p class="ml-2 font-semibold">CSS</p></span>
 </div>
 </div>
 <div class="space-y-4">
-<h3 class="text-sm font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">Frameworks</h3>
+<h3 class="text-sm font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-500">Frameworks</h3>
 <div class="flex flex-wrap gap-2">
-<span class="skill-tag">React.js</span>
-<span class="skill-tag">Tailwind CSS</span>
-<span class="skill-tag">Astro</span>
-<span class="skill-tag">Streamlit</span>
-<span class="skill-tag">SpectreConsole</span>
+<span class="flex bg-blue-100 py-1 px-4 rounded-full"> <ReactIcon class="w-5 h-5"/> <p class="ml-2 font-semibold">React</p></span>
+<span class="flex bg-slate-200 py-1 px-4 rounded-full"> <TailwindIcon class="w-5 h-5"/> <p class="ml-2 font-semibold ">TailwindCSS</p></span>
+<span class="flex bg-purple-200 py-1 px-4 rounded-full"> <AstroIcon class="w-5 h-5"/> <p class="ml-2 font-semibold">Astro</p></span>
+<span class="flex bg-red-100 py-1 px-4 rounded-full"> <StreamlitIcon class="w-5 h-5"/> <p class="ml-2 font-semibold">Streamlit</p></span>
 </div>
 </div>
 <div class="space-y-4">
-<h3 class="text-sm font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">Tools &amp; DevOps</h3>
+<h3 class="text-sm font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-500">Tools &amp; DevOps</h3>
 <div class="flex flex-wrap gap-2">
-<span class="skill-tag">Git &amp; GitHub</span>
+<span class="flex bg-red-100 py-1 px-4 rounded-full"> <GitIcon class="w-5 h-5"/> <p class="ml-2 font-semibold">Git</p></span>
+<span class="flex bg-slate-300 py-1 px-4 rounded-full"> <GitHubIcon class="w-5 h-5"/> <p class="ml-2 font-semibold">GitHub</p></span>
 </div>
 </div>
 <div class="space-y-4">
-<h3 class="text-sm font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">Design</h3>
+<h3 class="text-sm font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-500">Design</h3>
 <div class="flex flex-wrap gap-2">
-<span class="skill-tag">UI/UX Principles</span>
-<span class="skill-tag">Responsive Design</span>
+<span class="flex bg-blue-300 py-1 px-4 rounded-full"> <p class=" font-semibold">UI/UX</p></span>
+<span class="flex bg-red-200 py-1 px-4 rounded-full"> <p class=" font-semibold">Diseño responsive</p></span>
 </div>
 </div>
 </div>
@@ -111,9 +129,9 @@ const studies =await getCollection('studies')
 <section class="mb-12">
 <div class="flex flex-col md:flex-row md:items-start gap-12">
 <div class="md:w-1/3 sticky top-24">
-<h2 class="text-4xl  display tracking-tight text-slate-900 dark:text-white mb-4">Work History</h2>
+<h2 class="text-4xl  display tracking-tight text-slate-900 dark:text-white mb-4">Experiencia</h2>
 <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
-                            A timeline of my professional journey in the software industry, highlighting key roles and achievements.
+                            Desarrollo y mantenimiento de ecosistema digital de empresa. Responsable de arquitectura web corporativa, implementación de herramientas de automatización y soporte técnico especializado para garantizar la continuidad operativa.
                         </p>
 </div>
 <div class="md:w-2/3 space-y-8">
@@ -154,9 +172,9 @@ const studies =await getCollection('studies')
 <section class="mb-12">
 <div class="flex flex-col md:flex-row md:items-start gap-12">
 <div class="md:w-1/3 sticky top-24">
-<h2 class="text-4xl  display tracking-tight text-slate-900 dark:text-white mb-4">Studies</h2>
+<h2 class="text-4xl  display tracking-tight text-slate-900 dark:text-white mb-4">Estudios</h2>
 <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio labore ipsam voluptas animi cupiditate asperiores eos? Cupiditate placeat nihil obcaecati, minus doloremque non vel adipisci eligendi nobis, sequi eaque iste?
+                            Trayectoria académica centrada en la resolución de problemas de alta complejidad. Mi perfil integra la base lógica de la matemática competitiva con el rigor del análisis algorítmico y la investigación técnica, complementado con una participación activa en la formación de otros estudiantes.
                         </p>
 </div>
 <div class="md:w-2/3 space-y-8">

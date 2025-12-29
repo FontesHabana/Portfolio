@@ -1,21 +1,24 @@
 ---
 title: Bookgle
-imgbg: public\assets\background.webp
-imgfront: public\assets\front.webp
-deploy: s
-github: s
+subtitle: Motor de búsqueda semántica basado en algoritmos de similitud de vectores.
+imgbg: public\assets\bookgleBack.webp
+imgfront: public\assets\bookgleFront.webp
+deploy: 
+github: https://github.com/FontesHabana/BookFinder
 tech: 
     - html 
     - tailwindcss 
     - react
     - C#
 gallery:
-    - ../../../public/assets/background.webp
-    - ../../../public/assets/background.webp
-    - ../../../public/assets/background.webp
+    - ../../../public/assets/bookgle01.webp
+    - ../../../public/assets/bookgle02.webp
+    - ../../../public/assets/bookgle03.webp
 main: false
+link: Bookgle
 ---
 
 
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet quod quis delectus voluptatibus sunt rerum adipisci dicta quos eveniet alias. Omnis impedit ullam, quasi accusamus facilis amet repellendus dicta necessitatibus?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam aspernatur inventore corporis repellendus quibusdam temporibus modi. Suscipit perspiciatis dicta ipsam deserunt, rerum nihil beatae voluptatibus doloribus autem quas ducimus corrupti. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit, officia placeat fugiat dolore asperiores ex rerum voluptatem aliquam eveniet incidunt alias dolorum possimus similique molestias non nemo praesentium! Iste, facere.
+Bookgle es una solución integral de búsqueda semántica diseñada para la gestión y recuperación de información en bibliotecas digitales. El núcleo del proyecto implementa algoritmos de similitud de vectores (TF-IDF) y optimizaciones de búsqueda por prefijos, permitiendo una localización de contenidos precisa y eficiente.
+Desarrollado como un sistema Full-stack, el proyecto articula un backend robusto en C# encargado del procesamiento de datos, con una interfaz reactiva construida en React y Tailwind CSS, logrando un equilibrio entre complejidad algorítmica y experiencia de usuario.

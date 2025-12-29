@@ -81,10 +81,10 @@ export default function Dropdown() {
             >
               <div className="px-4   flex flex-col transition-transform duration-500 hover:-translate-y-1/2">
                 <span className=" p-3 font-semibold text-black hover:bg-blue-100 rounded-full transition-colors">
-                  Home
+                  Inicio
                 </span>
                 <span className=" p-3 font-semibold mb-3 text-black hover:bg-blue-100 rounded-full transition-colors">
-                  Home
+                  Inicio
                 </span>
               </div>
             </a>
@@ -94,10 +94,10 @@ export default function Dropdown() {
             >
               <div className="px-4   flex flex-col transition-transform duration-500 hover:-translate-y-1/2">
                 <span className=" p-3 font-semibold text-black hover:bg-blue-100 rounded-full transition-colors">
-                  About
+                  Sobre mi
                 </span>
                 <span className=" p-3 font-semibold mb-3 text-black hover:bg-blue-100 rounded-full transition-colors">
-                  About
+                  Sobre mi
                 </span>
               </div>
             </a>
@@ -107,10 +107,10 @@ export default function Dropdown() {
             >
               <div className="px-4   flex flex-col transition-transform duration-500 hover:-translate-y-1/2">
                 <span className=" p-3 font-semibold text-black hover:bg-blue-100 rounded-full transition-colors">
-                  Projects
+                  Proyectos
                 </span>
                 <span className=" p-3 font-semibold mb-3 text-black hover:bg-blue-100 rounded-full transition-colors">
-                  Projects
+                  Proyectos
                 </span>
               </div>
             </a>
@@ -120,10 +120,10 @@ export default function Dropdown() {
             >
               <div className="px-4   flex flex-col transition-transform duration-500 hover:-translate-y-1/2">
                 <span className=" p-3 font-semibold text-black hover:bg-blue-100 rounded-full transition-colors">
-                  Contact
+                  Contacto
                 </span>
                 <span className=" p-3 font-semibold mb-3 text-black hover:bg-blue-100 rounded-full transition-colors">
-                  Contact
+                  Contacto
                 </span>
               </div>
             </a>
@@ -147,7 +147,7 @@ export default function Dropdown() {
           <span className=" uppercase cursor-pointer hover:text-slate-400">EN</span>
           <a
             class="px-2 text-slate-600  hover:text-primary transition-colors"
-            href="#"
+            href="https://www.linkedin.com/in/javier-fontes-basabe"
           >
             <span class="sr-only">LinkedIn</span>
             <svg class="h-5 w-5  fill-slate-800 hover:fill-slate-400" viewBox="0 0 24 24">
@@ -156,7 +156,7 @@ export default function Dropdown() {
           </a>
           <a
             class=" pl-2 text-slate-600 hover:text-primary transition-colors"
-            href="#"
+            href="https://github.com/FontesHabana"
           >
             <span class="sr-only">GitHub</span>
             <svg class="h-5 w-5  fill-slate-800 hover:fill-slate-400" viewBox="0 0 24 24">

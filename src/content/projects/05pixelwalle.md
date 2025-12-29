@@ -1,19 +1,23 @@
 ---
-title: PixelWallE
-imgbg: public\assets\background.webp
-imgfront: public\assets\front.webp
-deploy: s
-github: s
+title: PixelStudioCode
+subtitle: Entorno de desarrollo y motor de ejecución para el lenguaje PixelWallE.
+imgbg: public\assets\pixelBack.webp
+imgfront: public\assets\pixelFront.webp
+deploy: https://fonteshabana.github.io/Pixel_WallE_docs/
+github: https://github.com/FontesHabana/PixelStudioCode
 tech: 
     - C#
     - Godot 
 gallery:
-    - ../../../public/assets/background.webp
-    - ../../../public/assets/background.webp
-    - ../../../public/assets/background.webp
+    - ../../../public/assets/pixel01.webp
+    - ../../../public/assets/pixel02.webp
+    - ../../../public/assets/pixel03.webp
+    - ../../../public/assets/pixel04.webp
 main: false
+link: Pixelwalle
 ---
 
 
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet quod quis delectus voluptatibus sunt rerum adipisci dicta quos eveniet alias. Omnis impedit ullam, quasi accusamus facilis amet repellendus dicta necessitatibus?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam aspernatur inventore corporis repellendus quibusdam temporibus modi. Suscipit perspiciatis dicta ipsam deserunt, rerum nihil beatae voluptatibus doloribus autem quas ducimus corrupti. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit, officia placeat fugiat dolore asperiores ex rerum voluptatem aliquam eveniet incidunt alias dolorum possimus similique molestias non nemo praesentium! Iste, facere.
+PixelStudioCode es un entorno de desarrollo integrado (IDE) diseñado para la creación de arte digital mediante programación. El núcleo del proyecto es PixelWallE, un lenguaje de programación que permite traducir sintaxis de código en representaciones visuales de pixelart.
+Desarrollado con C# y Godot, el sistema cuenta con una consola de ejecución en tiempo real y documentación técnica integrada. Además, incorpora un motor de procesamiento de imagen capaz de transcodificar fotografías convencionales a scripts de PixelWallE, fusionando el análisis de datos con el diseño creativo.

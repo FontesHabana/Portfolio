@@ -1,11 +1,12 @@
 ---
 company: Universida de la Habana
-level: Degree
+level: Grado en Ciencias de la Computación
 startdate: Sept 2024
 enddate: Actualidad
 achivements: 
-    - ICPC qualifiers contestant 
-    - Jornada Cientifica 
+    - Competidor en las clasificatorias del ICPC
+    - Jornada Científica 2024, destacado, "Cuando el modelo se lo imagina todo. Resolución de Crímines con LLMs".
+    - Jornada Científica 2024, destacado, "Representación de Conjeturas Matemáticas mediante Lenguajes de Concatenación de Rango".
     - Alumno Ayudante
 
 
@@ -13,4 +14,4 @@ achivements:
 
 
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet quod quis delectus voluptatibus sunt rerum adipisci dicta quos eveniet alias. Omnis impedit ullam, quasi accusamus facilis amet repellendus dicta necessitatibus?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam aspernatur inventore corporis repellendus quibusdam temporibus modi. Suscipit perspiciatis dicta ipsam deserunt, rerum nihil beatae voluptatibus doloribus autem quas ducimus corrupti. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit, officia placeat fugiat dolore asperiores ex rerum voluptatem aliquam eveniet incidunt alias dolorum possimus similique molestias non nemo praesentium! Iste, facere.
+Mi formación en la Universidad de La Habana se centra en construir una base sólida de algoritmia, lógica y arquitectura de software. Más allá de lo académico, mi paso por la facultad está marcado por una participación activa en el ecosistema de resolución de problemas complejos y la investigación. Mi enfoque combina el rigor científico con la capacidad práctica para abordar desafíos tecnológicos desde sus fundamentos.
