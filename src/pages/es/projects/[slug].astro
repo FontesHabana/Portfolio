@@ -4,84 +4,82 @@ import Layout from '../../../layouts/Layout.astro';
 import Footer from '../../../components/Footer.astro';
 
 export async function getStaticPaths() {
-  // Filtra por la carpeta 'es'
-  const projects = await getCollection('projects', ({ id }) => id.startsWith('es/'));
+  // Filtramos para que solo tome los archivos dentro de la carpeta 'es/'
+  const projects = await getCollection('projects', ({ id }) => {
+    return id.startsWith('es/');
+  });
   
   return projects.map(entry => ({
-    params: { slug: entry.slug.split('/').pop() },
+    // Extraemos solo el nombre del archivo para el slug de la URL
+    params: { slug: entry.slug.split('/').pop() }, 
     props: { project: entry },
   }));
 }
-
 const { project } = Astro.props;
 const { title, tech, github, deploy, gallery } = project.data;
-
-// Si quieres usar el contenido del Markdown con formato (negritas, listas, etc)
-// usa <Content />. Si prefieres solo el texto plano, usa project.body
 const { Content } = await project.render();
 ---
 
-<Layout title={`${title} | Fullstack Developer`}>
+<Layout title={title}> <!-- Corregido: sin backticks innecesarios ni escapes -->
   <main class="relative z-10 w-full">
-    <div class="flex justify-center relative w-full h-screen pt-32 pb-20 lg:pt-20 lg:pb-10 overflow-hidden">
+    
+    <div class="flex flex-col lg:flex-row relative w-full lg:h-screen pt-24 pb-10 lg:pt-20 lg:pb-10 overflow-x-hidden overflow-y-hidden">
       
       <!-- Luces de fondo -->
-      <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-purple-200 dark:bg-indigo-900/30 blur-3xl opacity-50 pointer-events-none"></div>
-      <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-orange-100 dark:bg-purple-900/20 blur-3xl opacity-50 pointer-events-none"></div>
+      <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 md:w-96 md:h-96 rounded-full bg-purple-200 dark:bg-indigo-900/30 blur-3xl opacity-50 pointer-events-none"></div>
+      <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-56 h-56 md:w-80 md:h-80 rounded-full bg-orange-100 dark:bg-purple-900/20 blur-3xl opacity-50 pointer-events-none"></div>
       
       <!-- Columna Izquierda: Información -->
-      <div class="w-1/2 mt-15 mx-10">
-        <div class="max-w-7xl mx-auto px-6 relative z-10">
-          <div class="max-w-4xl">
-            <h1 class="display text-2xl md:text-6xl lg:text-7xl font-medium leading-tight mb-1 bg-clip-text text-transparent bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900 dark:from-white dark:via-slate-200 dark:to-slate-400">
-              {title}           
-            </h1>
-            
-            <div class="flex gap-2 items-center mb-6">
-              {tech.map((t: string, i: number) => (
-                <Fragment key={t}>
-                  {i > 0 && <span class="rounded-full w-1 h-1 bg-slate-400" ></span>}
-                  <span class="text-xl font-medium uppercase py-1 text-slate-600 dark:text-slate-300 rounded-md">{t}</span>
-                </Fragment>
-              ))}
-            </div>
-
-            <!-- Descripción (Aquí puedes usar project.body o <Content />) -->
-            <div class="text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mb-8">
-               <Content />
-            </div>
+      <div class="w-full lg:w-1/2 flex items-center px-6 md:px-10 lg:px-20 mb-12 lg:mb-0">
+        <div class="max-w-4xl relative z-10">
+          <h1 class="display text-4xl md:text-6xl lg:text-7xl font-medium leading-tight mb-4 bg-clip-text text-transparent bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900 dark:from-white dark:via-slate-200 dark:to-slate-400">
+            {title}           
+          </h1>
+          
+          <div class="flex flex-wrap gap-2 items-center mb-6">
+            {tech.map((t: string, i: number) => (
+              <Fragment key={t}>
+                {i > 0 && <span class="hidden sm:inline rounded-full w-1 h-1 bg-slate-400" ></span>}
+                <span class="text-sm md:text-xl font-medium uppercase py-1 text-slate-600 dark:text-slate-300 rounded-md">{t}</span>
+              </Fragment>
+            ))}
           </div>
 
-          <!-- Botones -->
+          <div class="text-base md:text-lg lg:text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mb-8 prose dark:prose-invert">
+             <Content />
+          </div>
+
           <div class="flex flex-col sm:flex-row gap-4">
             {github && (
-              <a href={github} class="inline-flex items-center justify-center px-8 py-3.5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium rounded-full hover:bg-slate-800 dark:hover:bg-slate-100 transition-all duration-300">
+              <a href={github} target="_blank" class="inline-flex items-center justify-center px-8 py-3.5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium rounded-full hover:bg-slate-800 dark:hover:bg-slate-100 transition-all duration-300 text-center">
                 GitHub
               </a>
             )}
-            {deploy && (
-              <a href={deploy} class="inline-flex items-center justify-center px-8 py-3.5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium rounded-full hover:bg-slate-800 dark:hover:bg-slate-100 transition-all duration-300">
-                Deploy
+             {deploy && (
+              <a href={deploy} class="inline-flex items-center justify-center px-8 py-3.5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium rounded-full hover:bg-slate-800 dark:hover:bg-slate-100 transition-all duration-300 text-center">
+                Ver proyecto
               </a>
             )}
           </div>
         </div>
       </div>
 
-      <!-- Columna Derecha: Galería Scroll Snap -->
-      <div class="relative w-1/2 h-full overflow-y-auto scroll-smooth  snap-mandatory no-scrollbar pb-20">
+      <!-- Columna Derecha: Galería -->
+      <div class="relative w-full lg:w-1/2 h-auto lg:h-full overflow-y-auto scroll-smooth  snap-mandatory no-scrollbar px-4">
         <div class="h-5"></div> 
         {gallery && gallery.map((src: string) => (
-            <div class="h-[450px] w-[100%] max-w-[580px] p-3 mb-10 mx-auto snap-center shrink-0">
+            <div class="w-full max-w-[580px] mb-6 md:mb-10 mx-auto snap-center shrink-0">
                  <img 
                     src={src} 
                     alt={title} 
-                    class="w-full h-full object-cover rounded-2xl shadow-xl transition-transform duration-500 hover:scale-[1.02]" 
+                    class="w-full h-auto rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800" 
                     loading="lazy"
                  />
             </div>
         ))}
+        <div class="h-10 lg:hidden"></div>
       </div>
+      
     </div> 
   </main>
 </Layout>

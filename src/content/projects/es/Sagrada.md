@@ -1,7 +1,7 @@
 ---
 title: SagradaMazeGame
 subtitle: Estrategia multijugador en consola. La batalla del laberinto.
-imgbg: /public/assets/sagradaBack.webp
+imgbg: /public/assets/sagradaback.webp
 imgfront: /public/assets/sagradaFront.webp
 deploy: 
 github: https://github.com/FontesHabana/Sagrada-AMazeGame
