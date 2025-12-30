@@ -19,103 +19,101 @@ import Arrow from "../components/icons/Arrow.astro";
 import  MailIcon  from "../components/icons/MailIcon.astro";
 ---
 
-<Layout title="Tu Nombre | Fullstack Developer">
+<Layout title="Javier Fontes | Fullstack Developer">
   <!-- Menu -->
-  <nav class="fixed top-0 right-0 w-full justify-end z-50 flex p-6">
-    <Dropdown client:load />
-  </nav>
-  <!--Presentation -->
+  
+  <!-- Presentation -->
   <Header />
-  <main class="relative z-10 sans  mx-auto overflow-hidden">
-    <!-- 1.Projects -->
+  
+  <main class="relative z-10 sans mx-auto overflow-hidden">
+    <!-- 1. Projects -->
     <section class="py-20 bg-white dark:bg-slate-900/50" id="work">
       <div class="max-w-7xl mx-auto px-6">
-        <div class="flex items-end justify-between mb-12">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
             <h2
               class="display text-3xl md:text-4xl text-slate-900 dark:text-white mb-2"
             >
-              Algunos Trabajos
+              Selected Works
             </h2>
-            <p class="text-slate-500 dark:text-slate-500">
-             Muestras de mi trabajo en desarrollo de software y diseño funcional.
+            <p class="text-slate-500 dark:text-slate-500 max-w-xl">
+              Showcasing my work in software development and functional design.
             </p>
           </div>
-         
         </div>
+
         <ProjectCard onlyMain={true}/>
-       <a
-            class="hidden mt-20 md:flex items-center text-primary font-medium  text-xl hover:text-indigo-400 transition-colors group"
-            href="./Projects"
-          >
-            Ver todos los proyectos
-            <div class="mt-1 group-hover:translate-x-4 transition-transform">
-              
+
+        <a
+          class="hidden mt-20 md:flex items-center text-primary font-medium text-xl hover:text-indigo-400 transition-colors group"
+          href="./Projects"
+        >
+          View all projects
+          <div class="mt-1 group-hover:translate-x-4 transition-transform">
             <Arrow class="w-5 h-5"/>
-            </div>
-          </a>
+          </div>
+        </a>
       </div>
     </section>
 
-    <!-- 2. BENTO ABOUT SECTION -->
-    <section class="py-30   bg-slate-50 dark:bg-slate-800/50 overflow-hidden  relative" id="about">
-      <div class="mx-auto px-40 ">
+    <!-- 2. ABOUT SECTION -->
+    <section class="py-24 bg-slate-50 dark:bg-slate-800/50 overflow-hidden relative" id="about">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <!-- Background Blobs -->
         <div class="absolute -bottom-10 right-0 -mr-20 -mb-20 w-96 h-96 rounded-full bg-purple-200 dark:bg-indigo-900/30 blur-3xl opacity-50 pointer-events-none"></div>
-    <div class="absolute top-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-orange-100 dark:bg-purple-900/20 blur-3xl opacity-50 pointer-events-none"></div>
-        <div class=" relative flex flex-col lg:flex-row gap-16 items-start">
-          <div class="lg:w-1/2">
+        <div class="absolute top-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-orange-100 dark:bg-purple-900/20 blur-3xl opacity-50 pointer-events-none"></div>
+        
+        <div class="relative flex flex-col lg:flex-row gap-16 items-start">
+          <div class="lg:w-2/3">
             <h2
-              class="display text-4xl md:text-4xl text-slate-900 dark:text-white mb-6"
+              class="display text-4xl md:text-5xl text-slate-900 dark:text-white mb-6"
             >
-               Sencillez técnica para problemas complejos.
+               Technical simplicity for complex problems.
             </h2>
             <div
-              class="prose text-xl dark:prose-invert text-slate-600 dark:text-slate-400"
+              class="prose text-lg md:text-xl dark:prose-invert text-slate-600 dark:text-slate-400"
             >
               <p class="mb-4">
-                     Soy Javier. Como estudiante de Ciencias de la Computación, paso gran parte de mi tiempo intentando entender cómo las herramientas digitales pueden hacernos la vida un poco más fácil. Creo que la programación es, ante todo, una forma de ayudar a los demás a resolver problemas cotidianos.
+                I'm Javier. As a Computer Science student, I spend most of my time trying to understand how digital tools can make our lives a bit easier. I believe that programming is, above all, a way to help others solve everyday problems.
               </p>
               <p>
-                No busco crear el sistema más complejo, sino el que sea más útil y fácil de usar. En cada proyecto que hago, trato de aprender algo nuevo y de escribir un código limpio y escalable. Para mí, el éxito de un trabajo no está en lo sofisticado que parezca, sino en que funcione bien para quien lo necesita.
+                I don't aim to build the most complex system, but the one that is most useful and easy to use. In every project I undertake, I strive to learn something new and write clean, scalable code. For me, the success of a project isn't about how sophisticated it looks, but how well it works for those who need it.
               </p>
             </div>
-            
           </div>
         </div>
       </div>
     </section>
 
-
-
-      <!-- 5. CONTACT PREVIEW -->
-    <section class="py-24 bg-slate-50 px-6 text-center overflow-hidden relative " id="contact">
+    <!-- 5. CONTACT PREVIEW -->
+    <section class="py-24 bg-slate-50 px-6 text-center overflow-hidden relative" id="contact">
       <div class="absolute top-0 right-0 -mr-20 -mt-40 w-96 h-96 rounded-full bg-purple-200 dark:bg-indigo-900/30 blur-3xl opacity-50 pointer-events-none"></div>
-    <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-orange-100 dark:bg-purple-900/20 blur-3xl opacity-50 pointer-events-none"></div>
-<div class="max-w-3xl mx-auto">
-  
-<h2 class="display text-4xl md:text-5xl text-slate-900 dark:text-white mb-6">¿Listo para crear algo auténtico?</h2>
-<p class="text-lg text-slate-600 dark:text-slate-400 mb-10">
-                Actualmente me encuentro disponible para proyectos independientes y oportunidades a tiempo completo.
-            </p>
-<a class="inline-flex items-center justify-center px-8 py-4 bg-slate-900 text-white font-medium text-lg rounded-full shadow-lg hover:bg-slate-800 transition-colors"  href="mailto: javierfontbas@gmail.com?subject=Contacto%20desde%20tu%20web&body=Hola%20Javier%2C%0A%0AMe%20gustar%C3%ADa%20hablar%20sobre%20...">
-                Di Hola
-               <MailIcon class="w-6 h-6  ml-2"></MailIcon>
-</a>
-<p class="text-lg text-slate-600 dark:text-slate-400 mt-3">
-                javierfontbas@gmail.com
-            </p>
-</div>
-</section>
-
-  
-    
+      <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-orange-100 dark:bg-purple-900/20 blur-3xl opacity-50 pointer-events-none"></div>
+      
+      <div class="relative max-w-3xl mx-auto">
+        <h2 class="display text-4xl md:text-5xl text-slate-900 dark:text-white mb-6">Ready to create something authentic?</h2>
+        <p class="text-lg text-slate-600 dark:text-slate-400 mb-10">
+          I am currently available for freelance projects and full-time opportunities.
+        </p>
+        <a 
+          class="inline-flex items-center justify-center px-8 py-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium text-lg rounded-full shadow-lg hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors" 
+          href="mailto:javierfontbas@gmail.com?subject=Contact%20from%20your%20website&body=Hi%20Javier%2C%0A%0AI'd%20like%20to%20talk%20about%20..."
+        >
+          Say Hello
+          <MailIcon class="w-6 h-6 ml-2"></MailIcon>
+        </a>
+        <p class="text-lg text-slate-600 dark:text-slate-400 mt-6">
+          javierfontbas@gmail.com
+        </p>
+      </div>
+    </section>
   </main>
 
   <Footer />
 </Layout>
 
 <style>
-  /* Suavizar el scroll al hacer clic en los enlaces del nav */
+  /* Smooth scroll for navigation links */
   html {
     scroll-behavior: smooth;
   }

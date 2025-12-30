@@ -8,6 +8,7 @@ import '@fontsource-variable/playfair-display';
 import '@fontsource-variable/inter';
 import Header from '../components/Header.astro';
 
+import Dropdown from "../components/DropDown.jsx";
 
 // 2. Definir las Props (para cambiar el título de cada página)
 interface Props {
@@ -18,12 +19,37 @@ interface Props {
 
 
 const { title, lang = "es" } = Astro.props;
+
+
+
+
+
+
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const langu = getLangFromUrl(Astro.url);
+const t = useTranslations(langu);
+
+// 1. Asegúrate de definir esta variable
+const currentPath = Astro.url.pathname; 
+
+const labels = {
+  menuOpen: t('menuOpen'),
+  menuClose: t('menuClose'),
+  navInicio: t('navInicio'),
+  navSobreMi: t('navSobreMi'),
+  navProyectos: t('navProyectos'),
+  navContacto: t('navContacto'),
+};
+
+
+
 ---
 <!doctype html>
 <html lang={lang}>
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/svg+xml" href="/public/assets/firma.webp" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
@@ -52,7 +78,14 @@ const { title, lang = "es" } = Astro.props;
 	</head>
     
 	<body >
-		
+		<nav class="fixed top-0 right-0 w-full justify-end z-50 flex p-6">
+    <Dropdown 
+  client:load 
+  lang={langu} 
+  t={labels} 
+  currentPath={currentPath} 
+/>
+  </nav>
         <nav>
             <!-- Aquí irá tu componente de navegación más adelante -->
         </nav>

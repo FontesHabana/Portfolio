@@ -1,0 +1,27 @@
+---
+import { languages } from '../i18n/ui';
+const { pathname } = Astro.url;
+
+// Función para generar la URL destino
+// Si estás en /en/projects -> cambia a /projects
+// Si estás en /projects -> cambia a /en/projects
+const getTargetLink = (lang: string) => {
+  const segments = pathname.split('/').filter(Boolean);
+  if (lang === 'es') {
+     return segments[0] === 'en' ? `/${segments.slice(1).join('/')}` : pathname;
+  } else {
+     return segments[0] === 'en' ? pathname : `/en${pathname}`;
+  }
+};
+---
+
+<div class="flex gap-2">
+  {Object.entries(languages).map(([code, label]) => (
+    <a
+      href={getTargetLink(code)}
+      class="px-3 py-1 rounded-md text-sm font-medium bg-slate-200 dark:bg-slate-800 hover:bg-indigo-500 hover:text-white transition-colors"
+    >
+      {label}
+    </a>
+  ))}
+</div>

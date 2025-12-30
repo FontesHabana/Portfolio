@@ -2,7 +2,6 @@
 import Layout from "../../layouts/Layout.astro";
 //import BackgroundLines from '../components/BackgroundLines.jsx';
 
-import Dropdown from "../../components/DropDown.jsx";
 import Footer from "../../components/Footer.astro";
 
 const images=[
@@ -15,16 +14,13 @@ const images=[
 import { getEntry } from "astro:content";
 import { getEntries } from "astro:content";
 import { promise } from "astro:schema";
-const project=await getEntry('projects',"06sagrada")
+const project=await getEntry('projects',"05pixelwalle")
 
 
 ---
 
 <Layout title="Tu Nombre | Fullstack Developer">
-  <!-- Menu -->
-  <nav class="fixed top-0 right-0 w-full justify-end z-50 flex p-6">
-    <Dropdown client:load />
-  </nav>
+
   <main class="relative z-10 w-full">
     <div class="flex   justify-center relative w-full h-screen  pt-32 pb-20 lg:pt-20 lg:pb-10 overflow-hidden">
       
@@ -79,15 +75,26 @@ const project=await getEntry('projects',"06sagrada")
       
 
 
-      <div class="relative w-1/2 h-full overflow-y-auto scroll-smooth pt-130 flex flex-col items-center  justify-center no-scrollbar ">
-        {project.data.gallery.map(src=>(
-            <div class="h-[380px] w-[98%] max-w-[520px] p-3  rounded-xl">
-             <img src={src} alt="AlternaWorld" class="w-full h-full object-cover rounded-xl" loading="lazy"/>
-             </div>
-        ))}
-       
-       
-      </div>
+      <div class="relative w-1/2 h-full overflow-y-auto scroll-smooth snap-mandatory no-scrollbar pb-20">
+    
+    <!-- Espaciador opcional si quieres que la primera imagen no empiece pegada arriba -->
+    <div class="h-5"></div> 
+
+    {project.data.gallery.map((src) => (
+        /* 2. Cada item debe tener snap-center para alinearse al medio */
+        <div class="h-[450px] w-[100%] max-w-[580px] p-3 mb-10 mx-auto snap-center shrink-0">
+             <img 
+                src={src} 
+                alt="Proyecto" 
+                class="w-full h-full rounded-2xl shadow-xl transition-transform duration-500 hover:scale-[1.02]" 
+                loading="lazy"
+             />
+        </div>
+    ))}
+
+    <!-- Espaciador final para permitir que la última imagen se centre bien -->
+    <div class=""></div>
+</div>
 
 
 

@@ -11,5 +11,15 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  integrations: [react()]
+  integrations: [react()],
+
+
+
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'es'],
+    routing: {
+      prefixDefaultLocale: false // 'false' para que la principal sea midominio.com/ y la otra midominio.com/en/
+    }
+  }
 });

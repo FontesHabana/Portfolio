@@ -1,8 +1,8 @@
 ---
 title: PixelStudioCode
 subtitle: Entorno de desarrollo y motor de ejecución para el lenguaje PixelWallE.
-imgbg: public\assets\pixelBack.webp
-imgfront: public\assets\pixelFront.webp
+imgbg: /public/assets/pixelBack.webp
+imgfront: /public/assets/pixelFront.webp
 deploy: https://fonteshabana.github.io/Pixel_WallE_docs/
 github: https://github.com/FontesHabana/PixelStudioCode
 tech: 

@@ -1,9 +1,9 @@
 ---
-import Layout from "../layouts/Layout.astro";
-//import BackgroundLines from '../components/BackgroundLines.jsx';
+import Layout from "../../layouts/Layout.astro";
+//import BackgroundLines from '../../components/BackgroundLines.jsx';
 
-import Dropdown from "../components/DropDown.jsx";
-import Footer from "../components/Footer.astro";
+import Dropdown from "../../components/DropDown.jsx";
+import Footer from "../../components/Footer.astro";
 
 
 import { getCollection } from 'astro:content';
@@ -12,26 +12,28 @@ import { span } from 'framer-motion/client';
 
 
 
-import GitHubIcon from "../components/icons/GitHubIcon.astro";
-import GitIcon from "../components/icons/GitIcon.astro";
-import PythonIcon from "../components/icons/PythonIcon.astro";
-import CSIcon from  "../components/icons/CSIcon.astro";
-import CPPIcon from "../components/icons/CPPIcon.astro";
-import JsIcon from "../components/icons/JsIcon.astro";
-import HTMLIcon from "../components/icons/HTMLIcon.astro";
-import CSSIcon from "../components/icons/CSSIcon.astro";
-import ReactIcon from "../components/icons/ReactIcon.astro";
-import AstroIcon from "../components/icons/AstroIcon.astro";
-import TailwindIcon from "../components/icons/TailwindIcon.astro";
-import StreamlitIcon from "../components/icons/StreamlitIcon.astro";
+import GitHubIcon from "../../components/icons/GitHubIcon.astro";
+import GitIcon from "../../components/icons/GitIcon.astro";
+import PythonIcon from "../../components/icons/PythonIcon.astro";
+import CSIcon from  "../../components/icons/CSIcon.astro";
+import CPPIcon from "../../components/icons/CPPIcon.astro";
+import JsIcon from "../../components/icons/JsIcon.astro";
+import HTMLIcon from "../../components/icons/HTMLIcon.astro";
+import CSSIcon from "../../components/icons/CSSIcon.astro";
+import ReactIcon from "../../components/icons/ReactIcon.astro";
+import AstroIcon from "../../components/icons/AstroIcon.astro";
+import TailwindIcon from "../../components/icons/TailwindIcon.astro";
+import StreamlitIcon from "../../components/icons/StreamlitIcon.astro";
 
 
 const work =await getCollection('work') 
 const studies =await getCollection('studies') 
 ---
 
-<Layout title="Javier Fontes Basabe">
-
+<Layout title="AboutMe">
+<nav class="fixed top-0 right-0 w-full justify-end z-50 flex p-6">
+    <Dropdown client:load />
+  </nav>
 <div class="relative flex min-h-screen   w-full flex-col overflow-x-hidden">
 
 <main class="relative sans flex-grow w-full bg-purple-50   mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">

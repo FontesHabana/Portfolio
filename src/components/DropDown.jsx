@@ -1,167 +1,95 @@
-import { div } from "framer-motion/client";
 import React, { useState } from "react";
-export default function Dropdown() {
+
+export default function Dropdown({ lang, t, currentPath }) {
   const [isOpen, setIsOpen] = useState(false);
 
+  // Función para construir las rutas de los links del menú
+  const getUrl = (path) => {
+    const cleanPath = path.startsWith("/") ? path : `/${path}`;
+    // Si el idioma es inglés (default), la ruta es /ejemplo
+    // Si el idioma es español, la ruta es /es/ejemplo
+    return lang === "en" ? cleanPath : `/es${cleanPath === "/" ? "" : cleanPath}`;
+  };
+
+  // Lógica para el botón de cambio de idioma (Switch)
+  // Si estoy en /About -> me lleva a /es/About
+  // Si estoy en /es/About -> me lleva a /About
+  const path = currentPath || "/"; // Si es undefined, usa la raíz
+
+const toggleLangUrl = lang === "en" 
+  ? `/es${path === "/" ? "" : path}` 
+  : path.replace("/es", "") || "/";
+
+  const menuItems = [
+    { label: t.navInicio, href: "/" },
+    { label: t.navSobreMi, href: "/About" },
+    { label: t.navProyectos, href: "/Projects" },
+    { label: t.navContacto, href: "/#contact" },
+  ];
+
   return (
-    <div className={"relative inline-block text-left"}>
+    <div className="relative inline-block text-left">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        onMouseLeave={() => !isOpen && setIsOpen(false)}
-        className={`group relative h-12 w-28 text-black flex items-center justify-start gap-3 rounded-full overflow-hidden transition-all duration-300 active:scale-95  ease-in-out hover:bg-white transition ${
+        className={`group relative h-12 w-28 text-black flex items-center justify-start gap-3 rounded-full overflow-hidden transition-all duration-300 active:scale-95 ease-in-out hover:bg-white ${
           isOpen ? "bg-white" : "bg-[#fafaff]"
-        } `}
+        }`}
       >
         <div className="relative h-5 overflow-hidden">
-          <div
-            className={`
-            px-4 flex flex-col transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]
-            ${isOpen ? "-translate-y-1/2" : "translate-y-0"}
-          `}
-          >
-            <span className="h-5 flex items-center justify-center font-bold text-black  tracking-[0.2em] text-[14px] uppercase">
-              Menu
+          <div className={`px-4 flex flex-col transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] ${isOpen ? "-translate-y-1/2" : "translate-y-0"}`}>
+            <span className="h-5 flex items-center justify-center font-bold tracking-[0.2em] text-[14px] uppercase">
+              {t.menuOpen}
             </span>
-            <span className="h-5 flex items-center justify-center font-bold text-black tracking-[0.2em] text-[14px] uppercase">
-              Close
+            <span className="h-5 flex items-center justify-center font-bold tracking-[0.2em] text-[14px] uppercase">
+              {t.menuClose}
             </span>
           </div>
         </div>
 
-        {/* ANIMACIÓN DE LOS DOS PUNTOS */}
+        {/* Puntos de animación */}
         <div className="absolute right-5 size-3 flex items-center justify-center">
-          {/* Punto 1 */}
-          <span
-            className={`
-            absolute w-[4.60px] h-[4.60px] bg-black rounded-full transition-all duration-500 ease-[cubic-bezier(0.68,-0.55,0.265,1.55)]
-            ${
-              isOpen
-                ? "-translate-y-1 translate-x-0"
-                : "translate-y-0 -translate-x-1   group-hover:-translate-y-1 group-hover:translate-x-0 "
-            }
-          `}
-          ></span>
-
-          {/* Punto 2 */}
-          <span
-            className={`
-            absolute w-[4.60px] h-[4.60px] bg-black rounded-full transition-all duration-500 ease-[cubic-bezier(0.68,-0.55,0.265,1.55)]
-            ${
-              isOpen
-                ? "translate-y-1 translate-x-0"
-                : "translate-y-0 translate-x-1   group-hover:translate-y-1 group-hover:translate-x-0"
-            }
-          `}
-          ></span>
+          <span className={`absolute w-[4.60px] h-[4.60px] bg-black rounded-full transition-all duration-500 ${isOpen ? "-translate-y-1" : "-translate-x-1 group-hover:-translate-y-1 group-hover:translate-x-0"}`}></span>
+          <span className={`absolute w-[4.60px] h-[4.60px] bg-black rounded-full transition-all duration-500 ${isOpen ? "translate-y-1" : "translate-x-1 group-hover:translate-y-1 group-hover:translate-x-0"}`}></span>
         </div>
       </button>
 
-      {/* MENÚ DESPLEGABLE CON ANIMACIÓN DE CARTA */}
-      <div className={`absolute  right-0 mt-3 w-70 {isOpen
-              ? "opacity-100  pointer-events-auto z-50"
-              : " pointer-events-none -z-10"
-          }`}>
-        <div
-          className={`
-           right-0  w-70 p-3 bg-white rounded-[1rem] shadow-2xl ring-1 ring-black/5
-          text-2xl uppercase
-          transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] origin-top-right
-          
-          ${
-            isOpen
-              ? "opacity-100 scale-100 translate-y-0 visible  pointer-events-auto"
-              : "opacity-0 -rotate-5 translate-y-10 invisible"
-          }
-        `}
-        >
-          <div className="pt-1 pb-3 flex flex-col gap-1  ">
-            <a
-              href="/"
-              className="py-1 my-1 relative h-12 overflow-hidden text-black hover:bg-blue-100 hover:scale-105 rounded-full transition-colors"
-            >
-              <div className="px-4   flex flex-col transition-transform duration-500 hover:-translate-y-1/2">
-                <span className=" p-3 font-semibold text-black hover:bg-blue-100 rounded-full transition-colors">
-                  Inicio
-                </span>
-                <span className=" p-3 font-semibold mb-3 text-black hover:bg-blue-100 rounded-full transition-colors">
-                  Inicio
-                </span>
-              </div>
-            </a>
-            <a
-              href="./About"
-              className="py-1 my-1 relative h-12 overflow-hidden text-black hover:bg-blue-100 hover:scale-105 rounded-full transition-colors"
-            >
-              <div className="px-4   flex flex-col transition-transform duration-500 hover:-translate-y-1/2">
-                <span className=" p-3 font-semibold text-black hover:bg-blue-100 rounded-full transition-colors">
-                  Sobre mi
-                </span>
-                <span className=" p-3 font-semibold mb-3 text-black hover:bg-blue-100 rounded-full transition-colors">
-                  Sobre mi
-                </span>
-              </div>
-            </a>
-            <a
-              href="./Projects"
-              className="py-1 my-1 relative h-12 overflow-hidden text-black hover:bg-blue-100 hover:scale-105 rounded-full transition-colors"
-            >
-              <div className="px-4   flex flex-col transition-transform duration-500 hover:-translate-y-1/2">
-                <span className=" p-3 font-semibold text-black hover:bg-blue-100 rounded-full transition-colors">
-                  Proyectos
-                </span>
-                <span className=" p-3 font-semibold mb-3 text-black hover:bg-blue-100 rounded-full transition-colors">
-                  Proyectos
-                </span>
-              </div>
-            </a>
-            <a
-              href="/#contact"
-              className="py-1 my-1 relative h-12 overflow-hidden text-black hover:bg-blue-100 hover:scale-105 rounded-full transition-colors"
-            >
-              <div className="px-4   flex flex-col transition-transform duration-500 hover:-translate-y-1/2">
-                <span className=" p-3 font-semibold text-black hover:bg-blue-100 rounded-full transition-colors">
-                  Contacto
-                </span>
-                <span className=" p-3 font-semibold mb-3 text-black hover:bg-blue-100 rounded-full transition-colors">
-                  Contacto
-                </span>
-              </div>
-            </a>
+      {/* MENÚ DESPLEGABLE */}
+      <div className={`absolute right-0 mt-3 w-72 transition-all duration-500 ${isOpen ? "opacity-100 pointer-events-auto z-50" : "opacity-0 pointer-events-none -z-10"}`}>
+        
+        {/* Bloque de Links */}
+        <div className={`p-3 bg-white rounded-[1rem] shadow-2xl ring-1 ring-black/5 text-2xl uppercase transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] origin-top-right ${isOpen ? "scale-100 translate-y-0" : "scale-95 -rotate-5 translate-y-10"}`}>
+          <div className="flex flex-col gap-1">
+            {menuItems.map((item) => (
+              <a
+                key={item.label}
+                href={getUrl(item.href)}
+                className="py-1 my-1 relative h-12 overflow-hidden text-black hover:bg-blue-100 hover:scale-105 rounded-full transition-all group"
+              >
+                <div className="px-4 flex flex-col transition-transform duration-500 hover:-translate-y-1/2">
+                  <span className="p-3 font-semibold">{item.label}</span>
+                  <span className="p-3 font-semibold">{item.label}</span>
+                </div>
+              </a>
+            ))}
           </div>
         </div>
 
-        <div
-          className={`
-         right-0 mt-3 w-70 p-3 bg-white rounded-[1rem] shadow-2xl ring-1 ring-black/5
-          text-xl font-semibold uppercase
-          grid-3 gap-3 justify-center items-center flex
-          transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] origin-top-right
+        {/* Bloque de Idioma y Redes */}
+        <div className={`right-0 mt-3 w-72 p-3 bg-white rounded-[1rem] shadow-2xl ring-1 ring-black/5 text-xl font-semibold uppercase flex gap-4 justify-center items-center transition-all duration-700 delay-100 origin-top-right ${isOpen ? "scale-100 translate-y-0" : "scale-95 rotate-5 translate-y-20"}`}>
           
-          ${
-            isOpen
-              ? "opacity-100 scale-100 translate-y-0 visible pointer-events-auto"
-              : "opacity-0 rotate-5 translate-y-20 invisible"
-          }
-        `}
-        >
-          <span className=" uppercase cursor-pointer hover:text-slate-400">EN</span>
-          <a
-            class="px-2 text-slate-600  hover:text-primary transition-colors"
-            href="https://www.linkedin.com/in/javier-fontes-basabe"
-          >
-            <span class="sr-only">LinkedIn</span>
-            <svg class="h-5 w-5  fill-slate-800 hover:fill-slate-400" viewBox="0 0 24 24">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
-            </svg>
+          {/* BOTÓN CAMBIO DE IDIOMA */}
+          <a href={toggleLangUrl} className="hover:text-indigo-500 transition-colors cursor-pointer">
+            {lang === "en" ? "ES" : "EN"}
           </a>
-          <a
-            class=" pl-2 text-slate-600 hover:text-primary transition-colors"
-            href="https://github.com/FontesHabana"
-          >
-            <span class="sr-only">GitHub</span>
-            <svg class="h-5 w-5  fill-slate-800 hover:fill-slate-400" viewBox="0 0 24 24">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
-            </svg>
+
+          <div className="w-px h-6 bg-slate-200"></div>
+
+          {/* Redes Sociales */}
+          <a href="https://www.linkedin.com/..." target="_blank" className="hover:scale-110 transition-transform">
+            <svg className="h-5 w-5 fill-slate-800" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg>
+          </a>
+          <a href="https://github.com/..." target="_blank" className="hover:scale-110 transition-transform">
+            <svg className="h-5 w-5 fill-slate-800" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg>
           </a>
         </div>
       </div>

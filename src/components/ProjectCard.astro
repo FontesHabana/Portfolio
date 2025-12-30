@@ -1,52 +1,78 @@
 ---
-
 import { getCollection } from 'astro:content';
-import { span } from 'framer-motion/client';
-import Arrow from './icons/Arrow.astro';
-const { onlyMain = true } = Astro.props;
 
-const projects =onlyMain? await getCollection('projects', ({data})=>data.main===true) : await getCollection('projects')
+// 1. Recibimos el idioma y la configuración de visibilidad
+const { lang = 'en', onlyMain = true } = Astro.props;
+
+// 2. Filtramos en una sola consulta por ID (idioma) y por el campo 'main'
+const projects = await getCollection('projects', (project) => {
+  // Verificamos que el archivo esté en la subcarpeta del idioma (ej: 'en/proyecto.md')
+  const isCorrectLang = project.id.startsWith(`${lang}/`);
+  
+  // Si onlyMain es true, filtramos solo los destacados; si es false, pasan todos
+  const isFeatured = onlyMain ? project.data.main === true : true;
+  
+  return isCorrectLang && isFeatured;
+});
+
+
+
 ---
-<a href={} class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
   {
-  projects.map((project: { slug: any; data: any; }, index) =>
-  {
-    const {slug, data}=project
-    const {title,subtitle, imgbg, imgfront, deploy, github, tech,main }=data
+    projects.map((project, index) => {
+      const { data, slug } = project;
+      const { title, subtitle, imgbg, imgfront ,link} = data;
 
-    return(
-      <article class={`group cursor-pointer md:mt-12 ${index % 2===1? 'translate-y-6': ''}`}>
-        <div class="relative overflow-hidden rounded-2xl  dark:bg-slate-800 aspect-[4/3] mb-1">
-<div class="absolute inset-0 dark:from-indigo-900/40 dark:to-purple-900/40  transition-transform duration-500 flex items-center justify-center">
-<span class=" text-6xl text-indigo-300/50 dark:text-indigo-500/50">
-    <img src={imgbg} alt={title} class="absolute inset-0 w-full h-full rounded-xl transition-transform duration-500  group-hover:scale-90  group-hover:blur-[2px]">
-    <img src={imgfront} alt={title} class="absolute inset-0 w-full h-full  transition-transform duration-500 group-hover:scale-110 hover:-translate-y-5  ">
-    
-    
-</span>
+      // 3. Limpiamos el slug (Astro por defecto incluye 'en/' o 'es/' en el slug)
+      // Ejemplo: de "en/proyecto-1" obtenemos "proyecto-1"
+      const cleanSlug = slug.split('/').pop();
+
+      // 4. Construimos la URL según el idioma
+      // Inglés (default): /projects/nombre-proyecto
+      // Español: /es/projects/nombre-proyecto
+      const projectUrl = lang === 'en' 
+        ? `/projects/${cleanSlug}` 
+        : `/es/projects/${cleanSlug}`;
+
+      return (
+        <a href={projectUrl} class="group">
+          <article class={`cursor-pointer md:mt-12 ${index % 2 === 1 ? 'md:translate-y-6' : ''}`}>
+            
+            <div class="relative overflow-hidden rounded-2xl dark:bg-slate-800 aspect-[4/3] mb-1">
+              <div class="absolute inset-0 dark:from-indigo-900/40 dark:to-purple-900/40 transition-transform duration-500 flex items-center justify-center">
+                <span class="text-6xl text-indigo-300/50 dark:text-indigo-500/50">
+                  <img src={imgbg} alt={title} class="absolute inset-0 w-full h-full rounded-xl transition-transform duration-500 group-hover:scale-90 group-hover:blur-[2px]" />
+                  <img src={imgfront} alt={title} class="absolute inset-0 w-full h-full transition-transform duration-500 group-hover:scale-110 group-hover:-translate-y-5" />
+                </span>
+              </div>
+            </div>
+
+            <div class="flex gap-2 items-center">
+              {data.tech.map((tech: string, i: number) => (
+                <Fragment key={tech}>
+                  {i > 0 && <span class="rounded-full w-1 h-1 bg-slate-400" />}
+                  <span class="text-xs font-medium uppercase py-1 text-slate-600 dark:text-slate-300 rounded-md">
+                    {tech}
+                  </span>
+                </Fragment>
+              ))}
+            </div>
+
+            <h3 class="text-3xl font-display font-semibold text-slate-900 dark:text-white mb-2 md:flex items-center group-hover:text-indigo-400 group-hover:translate-x-20 transition-transform  duration-900 transition-colors">
+              <span class="display material-icons transition-transform">
+                {title}
+              </span>
+            </h3>
+            
+            <p class="text-md font-semibold uppercase py-1 text-slate-600 dark:text-slate-300">
+              {subtitle}
+            </p>
+
+          </article>
+        </a>
+      )
+    })
+  }
 </div>
-</div>
-
-<div class=" flex gap-2  items-center">
-  {project.data.tech.map((tech: unknown,i: number)=>(
-    <>
-    {i>0 && <span class="rounded-full w-1 h-1 bg-slate-400" ></span>}
-    
-<span class="text-xs font-medium uppercase py-1   text-slate-600 dark:text-slate-300 rounded-md">{tech}</span>
-    </>
-  ))}
-</div>
-
-
-<h3 class=" text-3xl font-display  font-semibold text-slate-900 dark:text-white mb-2 md:flex items-center hover:text-indigo-400 transition-colors group" >
-                  
-                    <span class="display material-icons  group-hover:translate-x-12 transition-transform">{title}</span>
-</h3>
-<p class="text-md font-semibold  uppercase py-1   text-slate-600 dark:text-slate-300 ">{subtitle}</p>
-
-      </article>
-    )
-    
-  })}
-
-</a>
