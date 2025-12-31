@@ -23,7 +23,7 @@ const toggleLangUrl = lang === "en"
   const menuItems = [
     { label: t.navInicio, href: "/" },
     { label: t.navSobreMi, href: "/about" },
-    { label: t.navProyectos, href: "/projects" },
+    { label: t.navProyectos, href: "/project" },
     { label: t.navContacto, href: "/#contact" },
   ];
 
