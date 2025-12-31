@@ -18,12 +18,12 @@ export default function Dropdown({ lang, t, currentPath }) {
 
 const toggleLangUrl = lang === "en" 
   ? `/es${path === "/" ? "" : path}` 
-  : path.replace("/es", "") || "./";
+  : path.replace("/es", "") || "/";
 
   const menuItems = [
-    { label: t.navInicio, href: "./" },
-    { label: t.navSobreMi, href: "./About" },
-    { label: t.navProyectos, href: "./Projects" },
+    { label: t.navInicio, href: "/" },
+    { label: t.navSobreMi, href: "/about" },
+    { label: t.navProyectos, href: "/projects" },
     { label: t.navContacto, href: "/#contact" },
   ];
 
