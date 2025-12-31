@@ -1,8 +1,8 @@
 ---
 title: MuMind
 subtitle: Plataforma de juego social en React premiada en el Hackathon  "For the Love of Code" .
-imgbg: ../../public/assets/muMindBack.webp
-imgfront: ../../public/assets/muMindFront.webp
+imgbg: /assets/muMindBack.webp
+imgfront: /assets/muMindFront.webp
 deploy: https://mu-mind.vercel.app/
 github: https://github.com/FontesHabana/MuMind
 tech: 
@@ -10,10 +10,10 @@ tech:
     - tailwindcss 
     - react
 gallery:
-    - ../../../public/assets/muMind01.webp
-    - ../../../public/assets/muMind02.webp
-    - ../../../public/assets/muMind03.webp
-    - ../../../public/assets/muMind04.webp
+    - /assets/muMind01.webp
+    - /assets/muMind02.webp
+    - /assets/muMind03.webp
+    - /assets/muMind04.webp
 main: true
 link: MuMind
 ---

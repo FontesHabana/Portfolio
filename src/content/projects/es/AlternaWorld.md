@@ -1,8 +1,8 @@
 ---
 title: AlternaWorld
 subtitle: Landing page corporativa. Diseño funcional y optimización orgánica.
-imgbg: ../../public/assets/alternaBack.webp
-imgfront: ../../public/assets/alternaFront.webp
+imgbg: /assets/alternaBack.webp
+imgfront: /assets/alternaFront.webp
 deploy: https://alternaworld.net/
 github: 
 tech: 
@@ -10,10 +10,10 @@ tech:
     - css 
     - js
 gallery:
-    - ../../../public/assets/alterna01.webp
-    - ../../../public/assets/alterna02.webp
-    - ../../../public/assets/alterna03.webp
-    - ../../../public/assets/alterna04.webp
+   - /assets/alterna01.webp
+   - /assets/alterna02.webp
+   - /assets/alterna03.webp
+   - /assets/alterna04.webp
 main: true
 link: AlternaWorld
 ---
