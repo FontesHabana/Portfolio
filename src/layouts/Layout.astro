@@ -61,18 +61,18 @@ const labels = {
         <script is:inline>
             const theme = (() => {
                 if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-                    return localStorage.getItem('theme');
+                   return 'light';
                 }
-                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                    return 'dark';
+                if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+                    return 'light';
                 }
                 return 'light';
             })();
           
             if (theme === 'light') {
-                document.documentElement.classList.remove('dark');
+                document.documentElement.classList.remove('light');
             } else {
-                document.documentElement.classList.add('dark');
+                document.documentElement.classList.add('light');
             }
         </script>
 	</head>
@@ -86,18 +86,13 @@ const labels = {
   currentPath={currentPath} 
 />
   </nav>
-        <nav>
-            <!-- Aquí irá tu componente de navegación más adelante -->
-        </nav>
+        
 
         <main>
             <!-- El SLOT es donde se inyectará el contenido de cada página -->
             <slot /> 
         </main>
 
-        <footer>
-            <!-- Tu pie de página -->
-        </footer>
 
 	</body>
 </html>

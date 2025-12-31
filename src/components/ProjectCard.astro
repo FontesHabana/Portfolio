@@ -40,9 +40,9 @@ const projects = await getCollection('projects', (project) => {
         <a href={projectUrl} class="group">
           <article class={`cursor-pointer md:mt-12 ${index % 2 === 1 ? 'md:translate-y-6' : ''}`}>
             
-            <div class="relative overflow-hidden rounded-2xl dark:bg-slate-800 aspect-[4/3] mb-1">
-              <div class="absolute inset-0 dark:from-indigo-900/40 dark:to-purple-900/40 transition-transform duration-500 flex items-center justify-center">
-                <span class="text-6xl text-indigo-300/50 dark:text-indigo-500/50">
+            <div class="relative overflow-hidden rounded-2xl aspect-[4/3] mb-1">
+              <div class="absolute inset-0 transition-transform duration-500 flex items-center justify-center">
+                <span class="text-6xl text-indigo-300/50">
                   <img src={imgbg} alt={title} class="absolute inset-0 w-full h-full rounded-xl transition-transform duration-500 group-hover:scale-90 group-hover:blur-[2px]" />
                   <img src={imgfront} alt={title} class="absolute inset-0 w-full h-full transition-transform duration-500 group-hover:scale-110 group-hover:-translate-y-5" />
                 </span>
@@ -53,20 +53,20 @@ const projects = await getCollection('projects', (project) => {
               {data.tech.map((tech: string, i: number) => (
                 <Fragment key={tech}>
                   {i > 0 && <span class="rounded-full w-1 h-1 bg-slate-400" />}
-                  <span class="text-xs font-medium uppercase py-1 text-slate-600 dark:text-slate-300 rounded-md">
+                  <span class="text-xs font-medium uppercase py-1 text-slate-600  rounded-md">
                     {tech}
                   </span>
                 </Fragment>
               ))}
             </div>
 
-            <h3 class="text-3xl font-display font-semibold text-slate-900 dark:text-white mb-2 md:flex items-center group-hover:text-indigo-400 group-hover:translate-x-20 transition-transform  duration-900 transition-colors">
+            <h3 class="text-3xl font-display font-semibold text-slate-900 mb-2 md:flex items-center group-hover:text-indigo-400 group-hover:translate-x-20 transition-transform  duration-900 transition-colors">
               <span class="display material-icons transition-transform">
                 {title}
               </span>
             </h3>
             
-            <p class="text-md font-semibold uppercase py-1 text-slate-600 dark:text-slate-300">
+            <p class="text-md font-semibold uppercase py-1 text-slate-600 ">
               {subtitle}
             </p>
 
