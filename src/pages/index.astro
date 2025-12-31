@@ -27,12 +27,12 @@ import  MailIcon  from "../components/icons/MailIcon.astro";
   
   <main class="relative z-10 sans mx-auto overflow-hidden">
     <!-- 1. Projects -->
-    <section class="py-20 bg-white " id="work">
+    <section class="py-20 md:py-24 bg-white " id="work">
       <div class="max-w-7xl mx-auto px-6">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
             <h2
-              class="display text-3xl md:text-4xl text-slate-900  mb-2"
+              class="display text-3xl md:text-5xl text-slate-900  mb-3"
             >
               Selected Works
             </h2>
@@ -41,6 +41,14 @@ import  MailIcon  from "../components/icons/MailIcon.astro";
             </p>
           </div>
         </div>
+
+        <a
+            class="inline-flex md:hidden items-center text-primary-600 font-medium hover:text-indigo-400 transition-colors"
+            href="./Projects"
+          >
+            Ver todos los proyectos <Arrow class="w-4 h-4 ml-2"/>
+          </a>
+
 
         <ProjectCard onlyMain={true}/>
 
