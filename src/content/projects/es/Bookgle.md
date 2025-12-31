@@ -1,8 +1,8 @@
 ---
 title: Bookgle
 subtitle: Motor de búsqueda semántica basado en algoritmos de similitud de vectores.
-imgbg: /public\assets\bookgleBack.webp
-imgfront: /public\assets\bookgleFront.webp
+imgbg: ../../public/assets/bookgleBack.webp
+imgfront: ../../public/assets/bookgleFront.webp
 deploy: 
 github: https://github.com/FontesHabana/BookFinder
 tech: 

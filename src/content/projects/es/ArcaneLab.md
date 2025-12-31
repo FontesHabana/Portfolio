@@ -1,8 +1,8 @@
 ---
 title: ArcaneLab
 subtitle: Visualización computacional y validación de errores para ecuaciones diferenciales.
-imgbg: /public\assets\arcaneBack.webp
-imgfront: /public\assets\arcaneFront.webp
+imgbg: ../../public/assets/arcaneBack.webp
+imgfront: ../../public/assets/arcaneFront.webp
 deploy: https://hagrids-garden.streamlit.app/
 github: https://github.com/FontesHabana/Proyecto-MN-EDO
 tech: 

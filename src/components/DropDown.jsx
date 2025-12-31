@@ -21,9 +21,9 @@ const toggleLangUrl = lang === "en"
   : path.replace("/es", "") || "/";
 
   const menuItems = [
-    { label: t.navInicio, href: "./" },
-    { label: t.navSobreMi, href: "./About" },
-    { label: t.navProyectos, href: "./Projects" },
+    { label: t.navInicio, href: "/" },
+    { label: t.navSobreMi, href: "/About" },
+    { label: t.navProyectos, href: "/Projects" },
     { label: t.navContacto, href: "/#contact" },
   ];
 
