@@ -125,18 +125,37 @@ const labels = es ? {about:"sobre mí",projects:"proyectos",stack:"tecnologías"
     root.dataset.typingReady = "true";
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const revealTargets = root.querySelectorAll(".terminal-section > .prompt, .terminal-section > h2, .terminal-section > p, .terminal-section > .section-heading, .terminal-section > .stack, .terminal-section > .carousel-toolbar, .terminal-section > .project-grid, .terminal-section > .carousel-indicators, .terminal-console");
+    const commands = Array.from(root.querySelectorAll(".terminal-section .prompt .typewriter-text"));
+    const typeCommand = (element) => {
+      const fullText = element.dataset.fullText || element.textContent || "";
+      element.dataset.fullText = fullText;
+      if (reduceMotion) { element.textContent = fullText; return; }
+      element.textContent = "";
+      let position = 0;
+      const timer = window.setInterval(() => {
+        element.textContent += fullText.charAt(position);
+        position += 1;
+        if (position >= fullText.length) window.clearInterval(timer);
+      }, 48);
+    };
     if (reduceMotion || !("IntersectionObserver" in window)) {
       revealTargets.forEach(el => el.classList.add("is-revealed"));
-      root.querySelectorAll(".typewriter-text").forEach(el => el.classList.add("is-typed"));
+      commands.forEach(el => { el.textContent = el.dataset.fullText || el.textContent; });
       return;
     }
+    commands.forEach(el => { el.dataset.fullText = el.textContent || ""; el.textContent = ""; });
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
         const el = entry.target;
         el.classList.add("is-revealed");
-        el.querySelectorAll?.(".typewriter-text");
-        if (el.matches(".prompt")) el.querySelectorAll(".typewriter-text").forEach(command => command.classList.add("is-typed"));
+        if (el.matches(".prompt")) {
+          el.querySelectorAll(".typewriter-text").forEach(command => {
+            if (command.dataset.typingStarted === "true") return;
+            command.dataset.typingStarted = "true";
+            typeCommand(command);
+          });
+        }
         observer.unobserve(el);
       });
     }, { threshold: 0.18, rootMargin: "0px 0px -35px 0px" });
@@ -303,5 +322,15 @@ const labels = es ? {about:"sobre mí",projects:"proyectos",stack:"tecnologías"
   .terminal-site .terminal-section > .project-grid,
   .terminal-site .terminal-section > .carousel-indicators,
   .terminal-site .terminal-console{opacity:1;transform:none;transition:none}
+}
+</style>
+
+<style>
+/* Actual character-by-character typing replaces the previous clipped-width reveal. */
+.terminal-site .typewriter-text,
+.terminal-site .typewriter-text.is-typed {
+  max-width: none !important;
+  overflow: visible !important;
+  animation: none !important;
 }
 </style>
