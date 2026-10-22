@@ -71,17 +71,52 @@ const labels = es ? {about:"sobre mí",projects:"proyectos",stack:"tecnologías"
     const history = root?.querySelector("#terminal-history");
     if (!root || !form || !input || !output || form.dataset.ready) return;
     form.dataset.ready = "true";
+    const typeText = (element, text, speed = 28) => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !text) {
+        element.textContent = text;
+        return Promise.resolve();
+      }
+      element.textContent = "";
+      return new Promise(resolve => {
+        let position = 0;
+        const timer = window.setInterval(() => {
+          element.textContent += text.charAt(position++);
+          if (position >= text.length) {
+            window.clearInterval(timer);
+            resolve();
+          }
+        }, speed);
+      });
+    };
+    let typingQueue = Promise.resolve();
     form.addEventListener("submit", event => {
       event.preventDefault();
-      const cmd = input.value.trim().toLowerCase();
-      const commands = {about:"about",projects:"projects",ls:"projects",skills:"skills",stack:"skills",contact:"contact",help:null};
-      if (cmd === "clear") { history.replaceChildren(); }
-      else if (cmd in commands) {
-        const section = commands[cmd];
-        const line = document.createElement("p"); line.textContent = "fontes@portfolio:~$ " + cmd; history.append(line); const response = document.createElement("p"); response.className = "console-response"; response.textContent = section ? "Opening ~/" + section + "/" : "Available: help · about · projects · skills · contact · clear"; history.append(response);
-        if (section) root.querySelector("#" + section)?.scrollIntoView({behavior:"smooth"});
-      } else if (cmd) { const line = document.createElement("p"); line.textContent = "fontes@portfolio:~$ " + cmd; history.append(line); const response = document.createElement("p"); response.className = "console-response"; response.textContent = "zsh: command not found: " + cmd + " · try help"; history.append(response); }
+      const cmd = input.value.trim();
       input.value = "";
+      if (!cmd) return;
+      const normalized = cmd.toLowerCase();
+      if (normalized === "clear") { history.replaceChildren(); typingQueue = Promise.resolve(); return; }
+      const commands = {about:"about",projects:"projects",ls:"projects",skills:"skills",stack:"skills",contact:"contact",help:null};
+      const section = commands[normalized];
+      const line = document.createElement("p");
+      const prompt = document.createElement("span");
+      prompt.className = "console-prompt";
+      prompt.textContent = "fontes@portfolio:~$ ";
+      const typedCommand = document.createElement("span");
+      line.append(prompt, typedCommand);
+      history.append(line);
+      const response = document.createElement("p");
+      response.className = "console-response";
+      history.append(response);
+      typingQueue = typingQueue.then(async () => {
+        await typeText(typedCommand, cmd, 38);
+        const message = normalized in commands
+          ? (section ? "Opening ~/" + section + "/" : "Available: help · about · projects · skills · contact · clear")
+          : "zsh: command not found: " + cmd + " · try help";
+        await typeText(response, message, 20);
+        if (section) root.querySelector("#" + section)?.scrollIntoView({behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
+        history.scrollTop = history.scrollHeight;
+      });
     });
   }
   function initScrollTyping() {
