@@ -1,0 +1,307 @@
+---
+import { getCollection } from "astro:content";
+const lang = Astro.props.lang === "es" ? "es" : "en";
+const es = lang === "es";
+const prefix = es ? "/es" : "";
+const projects = (await getCollection("projects", ({ id }) => id.startsWith(lang + "/"))).map(p => ({...p.data, slug: p.id.split("/").pop()?.toLowerCase() || ""}));
+const labels = es ? {about:"sobre mí",projects:"proyectos",stack:"tecnologías",contact:"contacto",intro:"Estudiante de Ciencias de la Computación y desarrollador de software. Me gusta convertir problemas complejos en herramientas sencillas y útiles.",aboutText:"Creo en el código limpio, las interfaces accesibles y aprender construyendo. Mi objetivo es desarrollar software que resuelva problemas reales.",featured:"Proyectos seleccionados",all:"Ver todos los proyectos",contactText:"¿Tienes una idea o una oportunidad? Hablemos.",help:"Prueba los comandos: help, about, projects, skills, contact, clear",command:"Escribe un comando…",open:"Abrir proyecto"} : {about:"about",projects:"projects",stack:"stack",contact:"contact",intro:"Computer Science student and software developer. I enjoy turning complex problems into simple, useful tools.",aboutText:"I believe in clean code, accessible interfaces, and learning by building. My goal is to create software that solves real problems.",featured:"Selected projects",all:"Browse all projects",contactText:"Have an idea or an opportunity? Let's talk.",help:"Try commands: help, about, projects, skills, contact, clear",command:"Type a command…",open:"Open project"};
+---
+<div class="terminal-site" data-terminal-lang={lang}>
+  <div class="terminal-shell"><div id="theme-toast" class="theme-toast" role="status" hidden><svg class="bug-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 9-2-2M16 9l2-2M9 4l1.5 2M15 4l-1.5 2M5 12H3M21 12h-2M6 17l-2 2M18 17l2 2M12 8v12M8 10h8M8 14h8M8 18h8"/><rect x="7" y="7" width="10" height="14" rx="5"/></svg><span>{es ? "La luz atrae bugs." : "Light attracts bugs."}</span></div>
+    <div class="window-bar"><div class="window-controls" aria-hidden="true"><i></i><i></i><i></i></div><span>fontes@portfolio — ~/home</span><span class="window-meta">zsh · 100×36</span></div><header class="terminal-top"><a href={prefix + "/"} class="brand">fontes<span>@portfolio</span>:~</a><div class="status-theme"><span class="status"><span class="status-dot"></span> online</span><button type="button" id="theme-toggle" class="theme-toggle" aria-label={es ? "Cambiar a modo claro" : "Switch to light mode"} title={es ? "Cambiar a modo claro" : "Switch to light mode"}><svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"/></svg></button></div><div class="top-actions"><nav aria-label="Main navigation"><a href="#about">{labels.about}</a><a href="#projects">{labels.projects}</a><a href="#skills">{labels.stack}</a><a href="#contact">{labels.contact}</a><a href={es ? "/" : "/es/"} lang={es ? "en" : "es"}>{es ? "EN" : "ES"}</a></nav></div></header>
+    <div class="terminal-intro"><div class="boot-lines"><span>Last login: today on ttys001</span><span>Welcome to Javier Fontes Basabe\'s workspace.</span><span>Type <b>help</b> to explore available commands.</span></div><span class="comment"># javier-fontes-basabe / portfolio</span><div class="prompt"><span class="syntax-dollar">❯</span> <span class="syntax-command typewriter-text">whoami</span></div><div class="hero"><img src="/assets/yo.webp" alt="Javier Fontes Basabe" width="120" height="120" loading="eager"/><div><p class="eyebrow">~/javier-fontes-basabe</p><h1><span class="syntax-name">Javier Fontes Basabe</span><span class="cursor" aria-hidden="true">_</span></h1><p class="subtitle">Computer Science Student <span>·</span> Software Developer</p><p class="description">{labels.intro}</p><div class="hero-links"><a href="https://github.com/FontesHabana" target="_blank" rel="noopener noreferrer">↗ GitHub</a><a href="https://www.linkedin.com/in/javier-fontes-basabe" target="_blank" rel="noopener noreferrer">↗ LinkedIn</a><a href="mailto:javierfontbas@gmail.com">↗ Email</a></div></div></div></div>
+    <section id="about" class="terminal-section"><div class="prompt"><span class="syntax-dollar">❯</span> <span class="syntax-command typewriter-text">cat about.md</span></div><h2><span class="syntax-heading">{es ? "Sobre mí" : "About me"}</span></h2><p>{labels.aboutText}</p><p class="muted">{es ? "Me interesa el desarrollo web, la ingeniería de software y la inteligencia artificial." : "I'm interested in web development, software engineering, and artificial intelligence."}</p></section>
+    <section id="projects" class="terminal-section"><div class="prompt"><span class="syntax-dollar">❯</span> <span class="syntax-command typewriter-text">ls ~/projects/</span></div><div class="section-heading"><h2><span class="syntax-heading">Projects</span> <span class="syntax-dim">— {labels.featured}</span></h2><a href={prefix + "/project"}>{labels.all} ↗</a></div><div class="carousel-toolbar"><span class="carousel-counter" id="project-counter">01 / {String(projects.length).padStart(2,"0")}</span><div class="carousel-actions"><button type="button" id="project-prev" aria-label={es ? "Proyecto anterior" : "Previous project"}>‹</button><button type="button" id="project-next" aria-label={es ? "Proyecto siguiente" : "Next project"}>›</button></div></div><div class="project-grid" id="project-carousel" tabindex="0" aria-label={labels.featured}>{projects.map(p => <a class="project" href={prefix + "/projects/" + (p.link || p.slug).toLowerCase()}><div class="project-image"><img class="project-backdrop" src={p.imgbg || p.imgfront} alt="" loading="lazy"/><img class="project-foreground" src={p.imgfront || p.imgbg} alt={p.title} loading="lazy"/></div><div class="project-body"><span class="folder"><span class="syntax-dim">drwxr-xr-x</span>&nbsp; {p.title}/</span><p>{p.subtitle}</p><div class="tags">{(p.tech || []).map(t => <span>{t}</span>)}</div><span class="project-open">{labels.open} ↗</span></div></a>)}</div><div class="carousel-indicators" id="project-indicators" role="group" aria-label={es ? "Elegir proyecto" : "Select project"}>{projects.map((p,i) => <button type="button" class="carousel-indicator" data-project-index={i} aria-label={`${es ? "Mostrar" : "Show"} ${p.title}`} aria-pressed={i === 0 ? "true" : "false"}><span></span></button>)}</div></section>
+    <section id="skills" class="terminal-section"><div class="prompt"><span class="syntax-dollar">❯</span> <span class="syntax-command typewriter-text">cat stack.json</span></div><h2><span class="syntax-heading">{es ? "Tecnologías" : "Tech stack"}</span></h2><pre class="stack" aria-label="Technology stack">{JSON.stringify({languages:["Python","JavaScript","C++","C#"],frontend:["Astro","React","Tailwind CSS","HTML","CSS"],tools:["Git","GitHub","VS Code"]},null,2)}</pre></section>
+    <section id="contact" class="terminal-section"><div class="prompt"><span class="syntax-dollar">❯</span> <span class="syntax-command typewriter-text">./contact.sh</span></div><h2><span class="syntax-heading">{es ? "Contacto" : "Get in touch"}</span></h2><p>{labels.contactText}</p><a class="email" href="mailto:javierfontbas@gmail.com">javierfontbas@gmail.com ↗</a></section>
+    <section class="terminal-console" aria-label="Interactive terminal"><div class="console-heading"><span>interactive shell</span><span>● ready</span></div><div class="console-history" id="terminal-history" aria-live="polite"><p class="muted" id="terminal-output">{labels.help}</p></div><form id="terminal-form" autocomplete="off"><label for="terminal-input">fontes@portfolio:~$</label><input id="terminal-input" name="command" aria-label={labels.command} placeholder={labels.command} spellcheck="false"/><button type="submit" aria-label="Run command">↵</button></form></section>
+    <footer>© {new Date().getFullYear()} Javier Fontes Basabe <span>built with Astro · <a href="https://github.com/FontesHabana/Portfolio">source ↗</a></span></footer>
+  </div>
+</div>
+<script>
+  function initTerminal() {
+    const root = document.querySelector(".terminal-site");
+    const controller = new AbortController();
+    const themeToggle = root?.querySelector("#theme-toggle");
+    const themeToast = root?.querySelector("#theme-toast");
+    let toastTimer;
+    themeToggle?.addEventListener("click", () => {
+      if (themeToast) {
+        themeToast.hidden = false;
+        themeToast.classList.add("toast-visible");
+        if (toastTimer) window.clearTimeout(toastTimer);
+        toastTimer = window.setTimeout(() => { themeToast.classList.remove("toast-visible"); themeToast.hidden = true; }, 5000);
+      }
+    });
+    const form = root?.querySelector("#terminal-form");
+    const input = root?.querySelector("#terminal-input");
+    const output = root?.querySelector("#terminal-output");
+    const carousel = root?.querySelector("#project-carousel");
+    const cards = Array.from(carousel?.querySelectorAll(".project") || []);
+    const counter = root?.querySelector("#project-counter");
+    let index = 0;
+    const showProject = (next) => { if (!cards.length) return; index = (next + cards.length) % cards.length; cards.forEach((card,i) => {card.hidden = i !== index; card.setAttribute("aria-hidden",String(i !== index)); card.tabIndex = i === index ? 0 : -1;}); if(counter) counter.textContent = String(index+1).padStart(2,"0")+" / "+String(cards.length).padStart(2,"0"); };
+    root.querySelector("#project-prev")?.addEventListener("click",()=>showProject(index-1));
+    root.querySelector("#project-next")?.addEventListener("click",()=>showProject(index+1));
+    carousel?.addEventListener("keydown",(event)=>{if(event.key==="ArrowLeft"||event.key==="ArrowRight"){event.preventDefault();showProject(index+(event.key==="ArrowRight"?1:-1));}});
+    const indicators = Array.from(root.querySelectorAll(".carousel-indicator"));
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let autoTimer;
+    let paused = false;
+    const previousShowProject = showProject;
+    // Keep the project markers synchronized with the existing carousel state.
+    const syncIndicators = () => indicators.forEach((dot,i) => dot.setAttribute("aria-pressed",String(i === index)));
+    const navigate = (next) => { previousShowProject(next); syncIndicators(); };
+    const stopAuto = () => { if(autoTimer) window.clearInterval(autoTimer); autoTimer = undefined; };
+    const startAuto = () => { stopAuto(); if (!reduceMotion.matches && !paused && cards.length > 1 && !document.hidden) autoTimer = window.setInterval(() => navigate(index + 1), 5000); };
+    indicators.forEach((dot,i) => dot.addEventListener("click",() => { navigate(i); startAuto(); }));
+    root.querySelector("#project-prev")?.addEventListener("click",syncIndicators);
+    root.querySelector("#project-next")?.addEventListener("click",syncIndicators);
+    carousel?.addEventListener("keydown",syncIndicators);
+    const projectsSection = root.querySelector("#projects");
+    projectsSection?.addEventListener("mouseenter",() => { paused = true; stopAuto(); });
+    projectsSection?.addEventListener("mouseleave",() => { paused = false; startAuto(); });
+    projectsSection?.addEventListener("focusin",() => { paused = true; stopAuto(); });
+    projectsSection?.addEventListener("focusout",(event) => { if (!projectsSection.contains(event.relatedTarget)) { paused = false; startAuto(); } });
+    document.addEventListener("visibilitychange",() => { if(document.hidden) stopAuto(); else startAuto(); },{signal: controller.signal});
+    reduceMotion.addEventListener?.("change",startAuto,{signal:controller.signal});
+    showProject(0);
+    syncIndicators();
+    startAuto();
+    const history = root?.querySelector("#terminal-history");
+    if (!root || !form || !input || !output || form.dataset.ready) return;
+    form.dataset.ready = "true";
+    const typeText = (element, text, speed = 28) => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !text) {
+        element.textContent = text;
+        return Promise.resolve();
+      }
+      element.textContent = "";
+      return new Promise(resolve => {
+        let position = 0;
+        const timer = window.setInterval(() => {
+          element.textContent += text.charAt(position++);
+          if (position >= text.length) {
+            window.clearInterval(timer);
+            resolve();
+          }
+        }, speed);
+      });
+    };
+    let typingQueue = Promise.resolve();
+    form.addEventListener("submit", event => {
+      event.preventDefault();
+      const cmd = input.value.trim();
+      input.value = "";
+      if (!cmd) return;
+      const normalized = cmd.toLowerCase();
+      if (normalized === "clear") { history.replaceChildren(); typingQueue = Promise.resolve(); return; }
+      const commands = {about:"about",projects:"projects",ls:"projects",skills:"skills",stack:"skills",contact:"contact",help:null};
+      const section = commands[normalized];
+      const line = document.createElement("p");
+      const prompt = document.createElement("span");
+      prompt.className = "console-prompt";
+      prompt.textContent = "fontes@portfolio:~$ ";
+      const typedCommand = document.createElement("span");
+      line.append(prompt, typedCommand);
+      history.append(line);
+      const response = document.createElement("p");
+      response.className = "console-response";
+      history.append(response);
+      typingQueue = typingQueue.then(async () => {
+        await typeText(typedCommand, cmd, 38);
+        const message = normalized in commands
+          ? (section ? "Opening ~/" + section + "/" : "Available: help · about · projects · skills · contact · clear")
+          : "zsh: command not found: " + cmd + " · try help";
+        await typeText(response, message, 20);
+        if (section) root.querySelector("#" + section)?.scrollIntoView({behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
+        history.scrollTop = history.scrollHeight;
+      });
+    });
+  }
+  function initScrollTyping() {
+    const root = document.querySelector(".terminal-site");
+    if (!root || root.dataset.typingReady === "true") return;
+    root.dataset.typingReady = "true";
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const revealTargets = root.querySelectorAll(".terminal-section > .prompt, .terminal-section > h2, .terminal-section > p, .terminal-section > .section-heading, .terminal-section > .stack, .terminal-section > .carousel-toolbar, .terminal-section > .project-grid, .terminal-section > .carousel-indicators, .terminal-console");
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      revealTargets.forEach(el => el.classList.add("is-revealed"));
+      root.querySelectorAll(".typewriter-text").forEach(el => el.classList.add("is-typed"));
+      return;
+    }
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        el.classList.add("is-revealed");
+        el.querySelectorAll?.(".typewriter-text");
+        if (el.matches(".prompt")) el.querySelectorAll(".typewriter-text").forEach(command => command.classList.add("is-typed"));
+        observer.unobserve(el);
+      });
+    }, { threshold: 0.18, rootMargin: "0px 0px -35px 0px" });
+    revealTargets.forEach(el => observer.observe(el));
+  }
+  document.addEventListener("astro:page-load", () => { initTerminal(); initScrollTyping(); });
+  initTerminal();
+  initScrollTyping();
+</script>
+<style>
+:global(html){scroll-behavior:smooth} :global(body){margin:0;background:#0a0f12;color:#dce6e0}
+.terminal-site{--accent:#80e4ae;--muted:#8c9b98;min-height:100vh;background:radial-gradient(ellipse at 80% 0%,#14231f 0%,transparent 40%),#0a0f12;color:#dce6e0;font:15px/1.75 ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}
+.terminal-shell{max-width:1100px;margin:auto;padding:0 28px}.terminal-top{display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #293632;padding:24px 0;flex-wrap:wrap}.brand{color:var(--accent);font-weight:700;text-decoration:none}.brand span{color:#b9c8c1}.status{color:var(--muted);font-size:12px}.status-dot{display:inline-block;width:7px;height:7px;background:var(--accent);border-radius:50%;margin-right:5px}.terminal-top nav{display:flex;gap:18px;flex-wrap:wrap}.terminal-top a,.section-heading a,.hero-links a,footer a{color:#b3c5bc;text-decoration:none}.terminal-top a:hover,.section-heading a:hover,.hero-links a:hover,footer a:hover{color:var(--accent)}.terminal-intro{padding:65px 0 56px}.comment,.muted{color:var(--muted)}.comment{font-size:12px}.prompt{color:var(--accent);margin:18px 0 22px;font-size:13px}.prompt span{color:#e5ece7}.hero{display:flex;gap:30px;align-items:flex-start}.hero img{width:120px;height:120px;object-fit:cover;border-radius:8px;filter:grayscale(.2);border:1px solid #32443a}.eyebrow{font-size:12px;color:var(--accent);margin:0}h1{font-size:clamp(28px,5vw,52px);letter-spacing:-.055em;line-height:1.2;margin:8px 0 10px;font-weight:650}.cursor{color:var(--accent);animation:blink 1s step-end infinite}@keyframes blink{50%{opacity:0}}.subtitle{color:#a4b7ad;margin:0}.subtitle span{color:var(--accent)}.description{max-width:690px;color:#c3d0c9;margin:18px 0}.hero-links{display:flex;gap:20px;flex-wrap:wrap;font-size:13px}.terminal-section{padding:44px 0 55px;border-top:1px dashed #304039;scroll-margin-top:20px}.terminal-section h2{font-size:21px;color:#eef7f1;font-weight:600;margin:0 0 18px}.terminal-section>p{max-width:780px}.section-heading{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}.section-heading a{font-size:13px}.project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.project{border:1px solid #293c34;background:#101a17;color:inherit;text-decoration:none;border-radius:8px;overflow:hidden;transition:border-color .2s,transform .2s}.project:hover{border-color:var(--accent);transform:translateY(-3px)}.project-image{height:160px;background:#16221c;overflow:hidden}.project-image img{width:100%;height:100%;object-fit:cover;object-position:top}.project-body{padding:20px}.folder{color:var(--accent);font-weight:600}.project-body p{color:#b5c3ba;font-size:13px;min-height:48px}.tags{display:flex;flex-wrap:wrap;gap:6px}.tags span{font-size:11px;color:#a3cfb6;background:#1d3027;padding:2px 7px;border-radius:3px}.project-open{display:block;margin-top:18px;color:#c9e5d5;font-size:12px}.stack{color:#a9dfbd;background:#101a17;border:1px solid #293c34;padding:24px;border-radius:8px;overflow:auto;font-size:13px}.email{color:var(--accent);font-size:clamp(16px,3vw,23px);overflow-wrap:anywhere}.terminal-console{border-top:1px dashed #304039;padding:35px 0}.terminal-console p{font-size:12px}.terminal-console form{display:flex;align-items:center;gap:10px}.terminal-console label{color:var(--accent);white-space:nowrap;font-size:12px}.terminal-console input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:#fff;font:inherit}.terminal-console button{background:#1b3326;color:var(--accent);border:1px solid #38513f;border-radius:4px;padding:4px 12px;cursor:pointer}footer{border-top:1px solid #293632;padding:24px 0 35px;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12px}
+@media(max-width:650px){.terminal-shell{padding:0 18px}.terminal-top{padding:18px 0}.terminal-top nav{gap:12px;font-size:12px}.terminal-intro{padding:42px 0}.hero{flex-direction:column;gap:16px}.hero img{width:90px;height:90px}.project-grid{grid-template-columns:1fr}.terminal-section{padding:30px 0 40px}.terminal-console label{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.cursor{animation:none}.project{transition:none}}
+</style>
+<style>
+/* Terminal UI refinement */
+:global(body){background:#080c0b!important}
+.terminal-site{--accent:#a0d9aa;--muted:#82918b;background:#080c0b;font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace;font-size:13px;line-height:1.7;letter-spacing:-.012em;padding:32px 20px 64px}
+.terminal-shell{max-width:1060px;padding:0 36px 8px;background:#101613;border:1px solid #344139;border-radius:11px;box-shadow:0 28px 90px #0009,0 0 0 1px #ffffff05;overflow:hidden}
+.window-bar{display:flex;align-items:center;justify-content:space-between;margin:0 -36px;padding:10px 18px;background:#1c2520;border-bottom:1px solid #36453b;color:#a4afa7;font-size:11px;letter-spacing:0}.window-controls{display:flex;gap:7px}.window-controls i{display:block;width:10px;height:10px;border-radius:50%;background:#e26b63}.window-controls i:nth-child(2){background:#dfb85b}.window-controls i:nth-child(3){background:#69b979}.window-meta{color:#74867b}
+.terminal-top{padding:18px 0;border-bottom:1px solid #27372d}.terminal-top nav{gap:16px}.terminal-top nav a{font-size:12px}.brand{font-size:13px}.terminal-intro{padding:28px 0 35px}.boot-lines{display:flex;flex-direction:column;color:#718a79;font-size:11px;margin-bottom:26px}.boot-lines b{color:var(--accent);font-weight:500}.comment{color:#748b78;font-size:11px}.prompt{font-size:12px;margin:13px 0 15px;color:#a2d5a5}.hero{gap:24px;align-items:center}.hero img{width:104px;height:104px;border:1px solid #415044;border-radius:5px}.eyebrow{font-size:11px}.hero h1{font-size:clamp(24px,3.5vw,37px);font-weight:600;letter-spacing:-.045em;margin:5px 0 6px}.subtitle{font-size:12px}.description{font-size:13px;max-width:620px;margin:13px 0}.hero-links{font-size:12px;gap:16px}.terminal-section{padding:28px 0 35px;border-top:1px dashed #354238}.terminal-section h2{font-size:17px;font-weight:600;letter-spacing:-.035em;margin-bottom:13px}.terminal-section>p{font-size:13px;line-height:1.8}.project-grid{gap:12px}.project{background:#151e18;border-color:#344238;border-radius:5px}.project-image{height:175px;position:relative;background:#1b2620;isolation:isolate}.project-backdrop{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.7)}.project-foreground{position:absolute;z-index:1;inset:7% 8%;width:84%;height:86%;object-fit:contain;filter:drop-shadow(0 12px 20px #0009)}.project-body{padding:15px}.folder{font-size:12px}.project-body p{font-size:12px;min-height:35px}.project-open{margin-top:12px}.tags span{font-size:10px;background:#26382c}.stack{font-size:12px;line-height:1.7;border-radius:4px;background:#0d1410}.email{font-size:17px}.terminal-console{padding:25px 0}.console-heading{display:flex;justify-content:space-between;font-size:11px;color:#8ea693;border-bottom:1px solid #304135;padding-bottom:9px}.console-heading span:last-child{color:var(--accent)}.console-history{max-height:220px;overflow:auto;padding:12px 0;font-size:12px}.console-history p{margin:3px 0}.console-response{color:var(--accent)}.terminal-console form{background:#0b110d;border:1px solid #324535;border-radius:4px;padding:10px 12px}.terminal-console input{font-size:12px}.terminal-console button{font-size:13px}footer{font-size:11px}
+@media(max-width:650px){.terminal-site{padding:8px 6px 28px}.terminal-shell{padding:0 17px 8px;border-radius:7px}.window-bar{margin:0 -17px;padding:9px 12px}.window-meta{display:none}.terminal-top{gap:8px}.terminal-top nav{gap:10px}.hero{align-items:flex-start}.hero img{width:86px;height:86px}.project-grid{grid-template-columns:1fr}.project-image{height:180px}.terminal-console label{font-size:10px}}
+</style>
+<style>
+/* Single terminal type scale: color and weight, not size, define hierarchy. */
+.terminal-site{--term-font:clamp(12px,1.2vw,14px);font-size:var(--term-font);line-height:1.72;letter-spacing:0}
+.terminal-site :is(.window-bar,.window-meta,.terminal-top,.terminal-top nav a,.brand,.status,.boot-lines,.comment,.prompt,.eyebrow,.hero h1,.subtitle,.description,.hero-links,.terminal-section h2,.terminal-section>p,.section-heading a,.folder,.project-body p,.project-open,.tags span,.stack,.email,.console-heading,.console-history,.console-history p,.terminal-console label,.terminal-console input,.terminal-console button,footer,.carousel-toolbar,.carousel-actions button){font-size:inherit;letter-spacing:inherit;line-height:inherit}
+.terminal-site h1,.terminal-site h2{font-weight:700;margin:0 0 10px}
+.terminal-site h1{margin:5px 0}.terminal-site .hero{align-items:flex-start}
+.syntax-user{color:#80dcae}.syntax-path{color:#81baf3}.syntax-dollar{color:#d9b87a}.syntax-command{color:#f1e9d2}.syntax-name{color:#f3f1e7}.syntax-heading{color:#e6c889}.syntax-dim{color:#8c9d92;font-weight:400}
+.terminal-site .prompt>span.syntax-command{color:#f1e9d2}.terminal-site .folder{color:#a7d7ff}.terminal-site .subtitle{color:#c5d0c5}.terminal-site .eyebrow{color:#86b99b}.terminal-site .comment{color:#78937c}.terminal-site .project-body p{color:#bac7be}
+.terminal-site .project-grid{display:block;max-width:740px}.terminal-site .project[hidden]{display:none!important}.terminal-site .project{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);width:100%;border:1px solid #35473b;background:#131c16;min-height:210px;transform:none}.terminal-site .project:hover{border-color:#a0d9aa}.terminal-site .project-image{height:auto;min-height:210px}.terminal-site .project-body{display:flex;flex-direction:column;justify-content:center;padding:20px;min-width:0}.terminal-site .project-body p{min-height:0}.terminal-site .project-open{margin-top:16px}.terminal-site .carousel-toolbar{display:flex;align-items:center;justify-content:space-between;max-width:740px;margin:0 0 9px;color:#a6b8a9}.terminal-site .carousel-actions{display:flex;gap:6px}.terminal-site .carousel-actions button{color:#d3e8d5;background:#1c2b20;border:1px solid #415845;border-radius:3px;cursor:pointer;width:32px;height:28px;line-height:1}.terminal-site .carousel-actions button:hover,.terminal-site .carousel-actions button:focus-visible{background:#314f38;outline:1px solid #b0e7bd}
+.terminal-site .project-foreground{object-fit:contain}.terminal-site .terminal-section{padding:26px 0 32px}.terminal-site .terminal-intro{padding:26px 0 30px}.terminal-site .terminal-section h2{margin-bottom:10px}.terminal-site .stack{font-family:inherit}.terminal-site .tags span{padding:1px 6px}
+@media(max-width:650px){.terminal-site .project{grid-template-columns:1fr}.terminal-site .project-image{height:180px;min-height:180px}.terminal-site .project-body{padding:16px}.terminal-site .hero{flex-direction:row;gap:14px}.terminal-site .hero img{width:72px;height:72px}.terminal-site .terminal-console label{font-size:inherit}}
+</style>
+<style>
+.terminal-site .carousel-indicators{display:flex;align-items:center;justify-content:center;gap:8px;max-width:740px;margin:15px 0 0}
+.terminal-site .carousel-indicator{display:flex;align-items:center;justify-content:center;min-width:30px;height:26px;padding:6px 0;background:transparent;border:0;cursor:pointer}
+.terminal-site .carousel-indicator span{display:block;width:26px;height:3px;background:#435449;border-radius:3px;transition:background .2s,box-shadow .2s}
+.terminal-site .carousel-indicator[aria-pressed="true"] span{background:#a0d9aa;box-shadow:0 0 10px #a0d9aa75}
+.terminal-site .carousel-indicator:hover span{background:#8eb79b}
+.terminal-site .carousel-indicator:focus-visible{outline:2px solid #a0d9aa;outline-offset:2px}
+@media(prefers-reduced-motion:reduce){.terminal-site .carousel-indicator span{transition:none}}
+</style>
+<style>
+.terminal-site .terminal-top{display:flex;align-items:center;gap:16px}
+.terminal-site .status-theme{display:flex;align-items:center;gap:10px}.terminal-site .top-actions{display:flex;align-items:center;gap:18px;margin-left:auto}
+.terminal-site .status-theme{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.terminal-site .theme-toggle{display:inline-flex;align-items:center;justify-content:center;width:32px;height:30px;padding:5px;background:transparent;border:1px solid #435449;color:#c5d7ca;border-radius:4px;cursor:pointer}
+.terminal-site .theme-toggle .theme-icon{width:17px;height:17px;flex:0 0 17px}
+.terminal-site .theme-toggle:hover,.terminal-site .theme-toggle:focus-visible{border-color:var(--accent);color:var(--accent);outline-offset:3px}
+.terminal-site .top-actions nav{display:flex;align-items:center;gap:15px;flex-wrap:wrap}
+/* Icon-only theme control; layout is defined beside the online status. */
+.terminal-site .theme-toggle:hover,.terminal-site .theme-toggle:focus-visible{border-color:var(--accent);color:var(--accent);outline-offset:3px}
+.terminal-site .theme-icon{color:var(--accent);width:18px;height:18px;flex:0 0 18px}.terminal-site .bug-icon{width:18px;height:18px;flex:0 0 18px}
+.terminal-site .theme-toast{position:fixed;z-index:100;top:22px;left:50%;transform:translate(-50%,-8px);display:flex;align-items:center;gap:10px;padding:10px 16px;border:1px solid #597b5d;border-radius:5px;background:#17251a;color:#d8f2da;box-shadow:0 10px 40px #0005;opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;white-space:nowrap}
+.terminal-site .theme-toast[hidden]{display:none}
+.terminal-site .theme-toast.toast-visible{opacity:1;transform:translate(-50%,0)}
+.terminal-site .bug-icon{font-size:inherit}
+@media(max-width:760px){.terminal-site .terminal-top{align-items:flex-start}.terminal-site .status-theme{margin-left:auto}.terminal-site .top-actions{width:100%;margin-left:0;flex-wrap:wrap;justify-content:space-between}.terminal-site .top-actions nav{gap:10px}}
+@media(prefers-reduced-motion:reduce){.terminal-site .theme-toast{transition:none}}
+</style>
+
+<style>
+/* Brighter syntax palette with selective emphasis, keeping the terminal feel. */
+.terminal-site{
+  --accent:#67f0a2;
+  --muted:#a1b5a8;
+  --syntax-cyan:#55dff5;
+  --syntax-violet:#c5a0ff;
+  --syntax-yellow:#ffd166;
+  --syntax-pink:#ff8acb;
+}
+.terminal-site .syntax-user{color:#67f0a2}
+.terminal-site .syntax-path{color:#65c7ff}
+.terminal-site .syntax-dollar{color:#ffd166}
+.terminal-site .syntax-command{color:#fff0a6}
+.terminal-site .syntax-name{color:#f5f7ff;text-shadow:0 0 22px #55dff51c}
+.terminal-site .syntax-heading{color:#ffd166}
+.terminal-site .syntax-dim{color:#a1b5a8}
+.terminal-site .brand{color:#67f0a2}
+.terminal-site .brand span{color:#65c7ff}
+.terminal-site .status-dot{background:#67f0a2;box-shadow:0 0 9px #67f0a280}
+.terminal-site .eyebrow{color:#c5a0ff}
+.terminal-site .subtitle span{color:#ff8acb}
+.terminal-site .hero-links a{color:#65dfff}
+.terminal-site .hero-links a:hover{color:#67f0a2}
+.terminal-site .terminal-section h2 .syntax-heading{color:#ffd166}
+.terminal-site .section-heading .syntax-dim{color:#a1b5a8}
+.terminal-site .section-heading>a{color:#65dfff}
+.terminal-site .folder{color:#65dfff}
+.terminal-site .tags span{color:#a9f5ca;background:#173d30;border:1px solid #245a42}
+.terminal-site .project-open{color:#ffd166}
+.terminal-site .project:hover{border-color:#67f0a2;box-shadow:0 0 0 1px #67f0a21c}
+.terminal-site .stack{color:#91f5be;border-color:#315642}
+.terminal-site .email{color:#65dfff}
+.terminal-site .email:hover{color:#67f0a2}
+.terminal-site .console-heading span:last-child,.terminal-site .console-response{color:#67f0a2}
+.terminal-site .terminal-console label{color:#65c7ff}
+.terminal-site .carousel-indicator[aria-pressed="true"] span{background:#67f0a2;box-shadow:0 0 10px #67f0a275}
+.terminal-site .carousel-indicator:hover span{background:#65dfff}
+.terminal-site .theme-icon{color:#ffd166}
+.terminal-site .theme-toggle:hover,.terminal-site .theme-toggle:focus-visible{border-color:#ffd166;color:#ffd166}
+.terminal-site .theme-toast{border-color:#67f0a2;color:#d8ffe7}
+@media(max-width:650px){
+  .terminal-site .hero-links a{color:#65dfff}
+}
+</style>
+
+<style>
+/* Scroll-triggered terminal typing and subtle section reveals. */
+.terminal-site .typewriter-text{
+  display:inline-block;
+  max-width:0;
+  overflow:hidden;
+  white-space:nowrap;
+  vertical-align:bottom;
+}
+.terminal-site .typewriter-text.is-typed{
+  max-width:100ch;
+  animation:terminal-type 720ms steps(28,end) both;
+}
+.terminal-site .terminal-section > .prompt,
+.terminal-site .terminal-section > h2,
+.terminal-site .terminal-section > p,
+.terminal-site .terminal-section > .section-heading,
+.terminal-site .terminal-section > .stack,
+.terminal-site .terminal-section > .carousel-toolbar,
+.terminal-site .terminal-section > .project-grid,
+.terminal-site .terminal-section > .carousel-indicators,
+.terminal-site .terminal-console{
+  opacity:0;
+  transform:translateY(12px);
+  transition:opacity 420ms ease, transform 420ms ease;
+}
+.terminal-site .terminal-section > .is-revealed,
+.terminal-site .terminal-section > .prompt.is-revealed,
+.terminal-site .terminal-section > h2.is-revealed,
+.terminal-site .terminal-section > p.is-revealed,
+.terminal-site .terminal-section > .section-heading.is-revealed,
+.terminal-site .terminal-section > .stack.is-revealed,
+.terminal-site .terminal-section > .carousel-toolbar.is-revealed,
+.terminal-site .terminal-section > .project-grid.is-revealed,
+.terminal-site .terminal-section > .carousel-indicators.is-revealed,
+.terminal-site .terminal-console.is-revealed{
+  opacity:1;
+  transform:translateY(0);
+}
+@keyframes terminal-type{
+  from{max-width:0}
+  to{max-width:100ch}
+}
+@media(prefers-reduced-motion:reduce){
+  .terminal-site .typewriter-text{max-width:100ch}
+  .terminal-site .typewriter-text.is-typed{animation:none}
+  .terminal-site .terminal-section > .prompt,
+  .terminal-site .terminal-section > h2,
+  .terminal-site .terminal-section > p,
+  .terminal-site .terminal-section > .section-heading,
+  .terminal-site .terminal-section > .stack,
+  .terminal-site .terminal-section > .carousel-toolbar,
+  .terminal-site .terminal-section > .project-grid,
+  .terminal-site .terminal-section > .carousel-indicators,
+  .terminal-site .terminal-console{opacity:1;transform:none;transition:none}
+}
+</style>
