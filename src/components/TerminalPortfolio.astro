@@ -126,6 +126,9 @@ const labels = es ? {about:"sobre mí",projects:"proyectos",stack:"tecnologías"
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const revealTargets = root.querySelectorAll(".terminal-section > .prompt, .terminal-section > h2, .terminal-section > p, .terminal-section > .section-heading, .terminal-section > .stack, .terminal-section > .carousel-toolbar, .terminal-section > .project-grid, .terminal-section > .carousel-indicators, .terminal-console");
     const commands = Array.from(root.querySelectorAll(".terminal-section .prompt .typewriter-text"));
+    const contentTargets = Array.from(root.querySelectorAll(
+      ".terminal-section h2, .terminal-section > p, .terminal-section .stack, .terminal-section .section-heading a, .terminal-section .project-body .folder, .terminal-section .project-body p, .terminal-section .tags span, .terminal-section .project-open, .terminal-section .email"
+    ));
     const typeCommand = (element) => {
       const fullText = element.dataset.fullText || element.textContent || "";
       element.dataset.fullText = fullText;
@@ -138,12 +141,40 @@ const labels = es ? {about:"sobre mí",projects:"proyectos",stack:"tecnologías"
         if (position >= fullText.length) window.clearInterval(timer);
       }, 48);
     };
+    const typeContent = (element) => {
+      if (element.dataset.contentTypingStarted === "true") return;
+      element.dataset.contentTypingStarted = "true";
+      const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
+      const nodes = [];
+      while (walker.nextNode()) {
+        const node = walker.currentNode;
+        if (node.textContent) {
+          nodes.push({ node, text: node.textContent });
+          node.textContent = "";
+        }
+      }
+      if (reduceMotion || !nodes.length) {
+        nodes.forEach(({node, text}) => { node.textContent = text; });
+        return;
+      }
+      const sequence = nodes.flatMap(({node, text}) => Array.from(text, char => ({node, char})));
+      let position = 0;
+      const timer = window.setInterval(() => {
+        const item = sequence[position++];
+        if (item) item.node.textContent += item.char;
+        if (position >= sequence.length) window.clearInterval(timer);
+      }, 18);
+    };
     if (reduceMotion || !("IntersectionObserver" in window)) {
       revealTargets.forEach(el => el.classList.add("is-revealed"));
       commands.forEach(el => { el.textContent = el.dataset.fullText || el.textContent; });
       return;
     }
     commands.forEach(el => { el.dataset.fullText = el.textContent || ""; el.textContent = ""; });
+    contentTargets.forEach(el => {
+      // Keep the full text available until the element scrolls into view.
+      el.dataset.contentTypingPending = "true";
+    });
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
@@ -155,11 +186,14 @@ const labels = es ? {about:"sobre mí",projects:"proyectos",stack:"tecnologías"
             command.dataset.typingStarted = "true";
             typeCommand(command);
           });
+        } else if (el.matches(".terminal-section h2, .terminal-section > p, .terminal-section .stack, .terminal-section .section-heading a, .terminal-section .project-body .folder, .terminal-section .project-body p, .terminal-section .tags span, .terminal-section .project-open, .terminal-section .email")) {
+          typeContent(el);
         }
         observer.unobserve(el);
       });
     }, { threshold: 0.18, rootMargin: "0px 0px -35px 0px" });
     revealTargets.forEach(el => observer.observe(el));
+    contentTargets.forEach(el => observer.observe(el));
   }
   document.addEventListener("astro:page-load", () => { initTerminal(); initScrollTyping(); });
   initTerminal();
