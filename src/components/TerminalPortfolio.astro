@@ -142,3 +142,49 @@ const labels = es ? {about:"sobre mí",projects:"proyectos",stack:"tecnologías"
 @media(max-width:760px){.terminal-site .terminal-top{align-items:flex-start}.terminal-site .status-theme{margin-left:auto}.terminal-site .top-actions{width:100%;margin-left:0;flex-wrap:wrap;justify-content:space-between}.terminal-site .top-actions nav{gap:10px}}
 @media(prefers-reduced-motion:reduce){.terminal-site .theme-toast{transition:none}}
 </style>
+
+<style>
+/* Brighter syntax palette with selective emphasis, keeping the terminal feel. */
+.terminal-site{
+  --accent:#67f0a2;
+  --muted:#a1b5a8;
+  --syntax-cyan:#55dff5;
+  --syntax-violet:#c5a0ff;
+  --syntax-yellow:#ffd166;
+  --syntax-pink:#ff8acb;
+}
+.terminal-site .syntax-user{color:#67f0a2}
+.terminal-site .syntax-path{color:#65c7ff}
+.terminal-site .syntax-dollar{color:#ffd166}
+.terminal-site .syntax-command{color:#fff0a6}
+.terminal-site .syntax-name{color:#f5f7ff;text-shadow:0 0 22px #55dff51c}
+.terminal-site .syntax-heading{color:#ffd166}
+.terminal-site .syntax-dim{color:#a1b5a8}
+.terminal-site .brand{color:#67f0a2}
+.terminal-site .brand span{color:#65c7ff}
+.terminal-site .status-dot{background:#67f0a2;box-shadow:0 0 9px #67f0a280}
+.terminal-site .eyebrow{color:#c5a0ff}
+.terminal-site .subtitle span{color:#ff8acb}
+.terminal-site .hero-links a{color:#65dfff}
+.terminal-site .hero-links a:hover{color:#67f0a2}
+.terminal-site .terminal-section h2 .syntax-heading{color:#ffd166}
+.terminal-site .section-heading .syntax-dim{color:#a1b5a8}
+.terminal-site .section-heading>a{color:#65dfff}
+.terminal-site .folder{color:#65dfff}
+.terminal-site .tags span{color:#a9f5ca;background:#173d30;border:1px solid #245a42}
+.terminal-site .project-open{color:#ffd166}
+.terminal-site .project:hover{border-color:#67f0a2;box-shadow:0 0 0 1px #67f0a21c}
+.terminal-site .stack{color:#91f5be;border-color:#315642}
+.terminal-site .email{color:#65dfff}
+.terminal-site .email:hover{color:#67f0a2}
+.terminal-site .console-heading span:last-child,.terminal-site .console-response{color:#67f0a2}
+.terminal-site .terminal-console label{color:#65c7ff}
+.terminal-site .carousel-indicator[aria-pressed="true"] span{background:#67f0a2;box-shadow:0 0 10px #67f0a275}
+.terminal-site .carousel-indicator:hover span{background:#65dfff}
+.terminal-site .theme-icon{color:#ffd166}
+.terminal-site .theme-toggle:hover,.terminal-site .theme-toggle:focus-visible{border-color:#ffd166;color:#ffd166}
+.terminal-site .theme-toast{border-color:#67f0a2;color:#d8ffe7}
+@media(max-width:650px){
+  .terminal-site .hero-links a{color:#65dfff}
+}
+</style>
