@@ -125,21 +125,35 @@ const labels = es ? {about:"sobre mí",projects:"proyectos",stack:"tecnologías"
     root.dataset.typingReady = "true";
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const revealTargets = root.querySelectorAll(".terminal-section > .prompt, .terminal-section > h2, .terminal-section > p, .terminal-section > .section-heading, .terminal-section > .stack, .terminal-section > .carousel-toolbar, .terminal-section > .project-grid, .terminal-section > .carousel-indicators, .terminal-console");
-    const commands = Array.from(root.querySelectorAll(".terminal-section .prompt .typewriter-text"));
+    // Only key copy gets the typewriter effect; cards, tags, JSON and controls stay readable.
     const contentTargets = Array.from(root.querySelectorAll(
-      ".terminal-section h2, .terminal-section > p, .terminal-section .stack, .terminal-section .section-heading a, .terminal-section .project-body .folder, .terminal-section .project-body p, .terminal-section .tags span, .terminal-section .project-open, .terminal-section .email"
+      ".terminal-section > h2, .terminal-section > p"
     ));
-    const typeCommand = (element) => {
-      const fullText = element.dataset.fullText || element.textContent || "";
-      element.dataset.fullText = fullText;
-      if (reduceMotion) { element.textContent = fullText; return; }
+    let typingQueue = Promise.resolve();
+    const enqueueTyping = (task) => {
+      typingQueue = typingQueue.then(task).catch(error => console.error("Portfolio typing effect:", error));
+      return typingQueue;
+    };
+    const typeText = (element, text, speed) => enqueueTyping(() => new Promise(resolve => {
+      if (reduceMotion || !text) {
+        element.textContent = text;
+        resolve();
+        return;
+      }
       element.textContent = "";
       let position = 0;
       const timer = window.setInterval(() => {
-        element.textContent += fullText.charAt(position);
-        position += 1;
-        if (position >= fullText.length) window.clearInterval(timer);
-      }, 48);
+        element.textContent += text.charAt(position++);
+        if (position >= text.length) {
+          window.clearInterval(timer);
+          resolve();
+        }
+      }, speed);
+    }));
+    const typeCommand = (element) => {
+      const fullText = element.dataset.fullText || element.textContent || "";
+      element.dataset.fullText = fullText;
+      return typeText(element, fullText, 48);
     };
     const typeContent = (element) => {
       if (element.dataset.contentTypingStarted === "true") return;
@@ -148,33 +162,26 @@ const labels = es ? {about:"sobre mí",projects:"proyectos",stack:"tecnologías"
       const nodes = [];
       while (walker.nextNode()) {
         const node = walker.currentNode;
-        if (node.textContent) {
-          nodes.push({ node, text: node.textContent });
+        if (node.textContent) nodes.push({ node, text: node.textContent });
+      }
+      // Preserve inline markup and finish one text line/element before starting the next.
+      enqueueTyping(async () => {
+        if (reduceMotion) return;
+        for (const {node, text} of nodes) {
           node.textContent = "";
+          for (let i = 0; i < text.length; i++) {
+            node.textContent += text.charAt(i);
+            await new Promise(resolve => window.setTimeout(resolve, 18));
+          }
         }
-      }
-      if (reduceMotion || !nodes.length) {
-        nodes.forEach(({node, text}) => { node.textContent = text; });
-        return;
-      }
-      const sequence = nodes.flatMap(({node, text}) => Array.from(text, char => ({node, char})));
-      let position = 0;
-      const timer = window.setInterval(() => {
-        const item = sequence[position++];
-        if (item) item.node.textContent += item.char;
-        if (position >= sequence.length) window.clearInterval(timer);
-      }, 18);
+      });
     };
+    const commands = Array.from(root.querySelectorAll(".terminal-section .prompt .typewriter-text"));
     if (reduceMotion || !("IntersectionObserver" in window)) {
       revealTargets.forEach(el => el.classList.add("is-revealed"));
-      commands.forEach(el => { el.textContent = el.dataset.fullText || el.textContent; });
       return;
     }
     commands.forEach(el => { el.dataset.fullText = el.textContent || ""; el.textContent = ""; });
-    contentTargets.forEach(el => {
-      // Keep the full text available until the element scrolls into view.
-      el.dataset.contentTypingPending = "true";
-    });
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
@@ -186,7 +193,7 @@ const labels = es ? {about:"sobre mí",projects:"proyectos",stack:"tecnologías"
             command.dataset.typingStarted = "true";
             typeCommand(command);
           });
-        } else if (el.matches(".terminal-section h2, .terminal-section > p, .terminal-section .stack, .terminal-section .section-heading a, .terminal-section .project-body .folder, .terminal-section .project-body p, .terminal-section .tags span, .terminal-section .project-open, .terminal-section .email")) {
+        } else if (contentTargets.includes(el)) {
           typeContent(el);
         }
         observer.unobserve(el);
