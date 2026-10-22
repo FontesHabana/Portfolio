@@ -7,8 +7,8 @@ const projects = (await getCollection("projects", ({ id }) => id.startsWith(lang
 const labels = es ? {about:"sobre mí",projects:"proyectos",stack:"tecnologías",contact:"contacto",intro:"Estudiante de Ciencias de la Computación y desarrollador de software. Me gusta convertir problemas complejos en herramientas sencillas y útiles.",aboutText:"Creo en el código limpio, las interfaces accesibles y aprender construyendo. Mi objetivo es desarrollar software que resuelva problemas reales.",featured:"Proyectos seleccionados",all:"Ver todos los proyectos",contactText:"¿Tienes una idea o una oportunidad? Hablemos.",help:"Prueba los comandos: help, about, projects, skills, contact, clear",command:"Escribe un comando…",open:"Abrir proyecto"} : {about:"about",projects:"projects",stack:"stack",contact:"contact",intro:"Computer Science student and software developer. I enjoy turning complex problems into simple, useful tools.",aboutText:"I believe in clean code, accessible interfaces, and learning by building. My goal is to create software that solves real problems.",featured:"Selected projects",all:"Browse all projects",contactText:"Have an idea or an opportunity? Let's talk.",help:"Try commands: help, about, projects, skills, contact, clear",command:"Type a command…",open:"Open project"};
 ---
 <div class="terminal-site" data-terminal-lang={lang}>
-  <div class="terminal-shell">
-    <div class="window-bar"><div class="window-controls" aria-hidden="true"><i></i><i></i><i></i></div><span>fontes@portfolio — ~/home</span><span class="window-meta">zsh · 100×36</span></div><header class="terminal-top"><a href={prefix + "/"} class="brand">fontes<span>@portfolio</span>:~</a><span class="status"><span class="status-dot"></span> online</span><nav aria-label="Main navigation"><a href="#about">{labels.about}</a><a href="#projects">{labels.projects}</a><a href="#skills">{labels.stack}</a><a href="#contact">{labels.contact}</a><a href={es ? "/" : "/es/"} lang={es ? "en" : "es"}>{es ? "EN" : "ES"}</a></nav></header>
+  <div class="terminal-shell"><div id="theme-toast" class="theme-toast" role="status" hidden><span class="bug-icon" aria-hidden="true">🐛</span><span>{es ? "La luz atrae bugs." : "Light attracts bugs."}</span></div>
+    <div class="window-bar"><div class="window-controls" aria-hidden="true"><i></i><i></i><i></i></div><span>fontes@portfolio — ~/home</span><span class="window-meta">zsh · 100×36</span></div><header class="terminal-top"><a href={prefix + "/"} class="brand">fontes<span>@portfolio</span>:~</a><span class="status"><span class="status-dot"></span> online</span><div class="top-actions"><button type="button" id="theme-toggle" class="theme-toggle" aria-label={es ? "Cambiar tema" : "Toggle theme"} aria-expanded="false"><span class="theme-icon" aria-hidden="true">☾</span><span>{es ? "modo oscuro" : "dark mode"}</span></button><nav aria-label="Main navigation"><a href="#about">{labels.about}</a><a href="#projects">{labels.projects}</a><a href="#skills">{labels.stack}</a><a href="#contact">{labels.contact}</a><a href={es ? "/" : "/es/"} lang={es ? "en" : "es"}>{es ? "EN" : "ES"}</a></nav></div></header>
     <div class="terminal-intro"><div class="boot-lines"><span>Last login: today on ttys001</span><span>Welcome to Javier Fontes Basabe\'s workspace.</span><span>Type <b>help</b> to explore available commands.</span></div><span class="comment"># javier-fontes-basabe / portfolio</span><div class="prompt"><span class="syntax-user">fontes@portfolio</span><span class="syntax-path">:~</span><span class="syntax-dollar">$</span> <span class="syntax-command">whoami</span></div><div class="hero"><img src="/assets/yo.webp" alt="Javier Fontes Basabe" width="120" height="120" loading="eager"/><div><p class="eyebrow">~/javier-fontes-basabe</p><h1><span class="syntax-name">Javier Fontes Basabe</span><span class="cursor" aria-hidden="true">_</span></h1><p class="subtitle">Computer Science Student <span>·</span> Software Developer</p><p class="description">{labels.intro}</p><div class="hero-links"><a href="https://github.com/FontesHabana" target="_blank" rel="noopener noreferrer">↗ GitHub</a><a href="https://www.linkedin.com/in/javier-fontes-basabe" target="_blank" rel="noopener noreferrer">↗ LinkedIn</a><a href="mailto:javierfontbas@gmail.com">↗ Email</a></div></div></div></div>
     <section id="about" class="terminal-section"><div class="prompt"><span class="syntax-user">fontes@portfolio</span><span class="syntax-path">:~</span><span class="syntax-dollar">$</span> <span class="syntax-command">cat about.md</span></div><h2><span class="syntax-heading">{es ? "Sobre mí" : "About me"}</span></h2><p>{labels.aboutText}</p><p class="muted">{es ? "Me interesa el desarrollo web, la ingeniería de software y la inteligencia artificial." : "I'm interested in web development, software engineering, and artificial intelligence."}</p></section>
     <section id="projects" class="terminal-section"><div class="prompt"><span class="syntax-user">fontes@portfolio</span><span class="syntax-path">:~</span><span class="syntax-dollar">$</span> <span class="syntax-command">ls ~/projects/</span></div><div class="section-heading"><h2><span class="syntax-heading">Projects</span> <span class="syntax-dim">— {labels.featured}</span></h2><a href={prefix + "/project"}>{labels.all} ↗</a></div><div class="carousel-toolbar"><span class="carousel-counter" id="project-counter">01 / {String(projects.length).padStart(2,"0")}</span><div class="carousel-actions"><button type="button" id="project-prev" aria-label={es ? "Proyecto anterior" : "Previous project"}>‹</button><button type="button" id="project-next" aria-label={es ? "Proyecto siguiente" : "Next project"}>›</button></div></div><div class="project-grid" id="project-carousel" tabindex="0" aria-label={labels.featured}>{projects.map(p => <a class="project" href={prefix + "/projects/" + (p.link || p.slug).toLowerCase()}><div class="project-image"><img class="project-backdrop" src={p.imgbg || p.imgfront} alt="" loading="lazy"/><img class="project-foreground" src={p.imgfront || p.imgbg} alt={p.title} loading="lazy"/></div><div class="project-body"><span class="folder"><span class="syntax-dim">drwxr-xr-x</span>&nbsp; {p.title}/</span><p>{p.subtitle}</p><div class="tags">{(p.tech || []).map(t => <span>{t}</span>)}</div><span class="project-open">{labels.open} ↗</span></div></a>)}</div><div class="carousel-indicators" id="project-indicators" role="group" aria-label={es ? "Elegir proyecto" : "Select project"}>{projects.map((p,i) => <button type="button" class="carousel-indicator" data-project-index={i} aria-label={`${es ? "Mostrar" : "Show"} ${p.title}`} aria-pressed={i === 0 ? "true" : "false"}><span></span></button>)}</div></section>
@@ -22,6 +22,23 @@ const labels = es ? {about:"sobre mí",projects:"proyectos",stack:"tecnologías"
   function initTerminal() {
     const root = document.querySelector(".terminal-site");
     const controller = new AbortController();
+    const themeToggle = root?.querySelector("#theme-toggle");
+    const themeIcon = root?.querySelector(".theme-icon");
+    const themeLabel = themeToggle?.querySelector("span:last-child");
+    const themeToast = root?.querySelector("#theme-toast");
+    let toastTimer;
+    themeToggle?.addEventListener("click", () => {
+      const isLight = root.classList.toggle("light-mode");
+      themeToggle.setAttribute("aria-pressed", String(isLight));
+      if (themeIcon) themeIcon.textContent = isLight ? "☀" : "☾";
+      if (themeLabel) themeLabel.textContent = isLight ? (root.dataset.terminalLang === "es" ? "modo claro" : "light mode") : (root.dataset.terminalLang === "es" ? "modo oscuro" : "dark mode");
+      if (themeToast) {
+        themeToast.hidden = false;
+        themeToast.classList.add("toast-visible");
+        if (toastTimer) window.clearTimeout(toastTimer);
+        toastTimer = window.setTimeout(() => { themeToast.classList.remove("toast-visible"); themeToast.hidden = true; }, 2600);
+      }
+    });
     const form = root?.querySelector("#terminal-form");
     const input = root?.querySelector("#terminal-input");
     const output = root?.querySelector("#terminal-output");
@@ -112,4 +129,44 @@ const labels = es ? {about:"sobre mí",projects:"proyectos",stack:"tecnologías"
 .terminal-site .carousel-indicator:hover span{background:#8eb79b}
 .terminal-site .carousel-indicator:focus-visible{outline:2px solid #a0d9aa;outline-offset:2px}
 @media(prefers-reduced-motion:reduce){.terminal-site .carousel-indicator span{transition:none}}
+</style>
+<style>
+.terminal-site .terminal-top{display:flex;align-items:center;gap:16px}
+.terminal-site .top-actions{display:flex;align-items:center;gap:18px;margin-left:auto}
+.terminal-site .top-actions nav{display:flex;align-items:center;gap:15px;flex-wrap:wrap}
+.terminal-site .theme-toggle{display:inline-flex;align-items:center;gap:7px;background:transparent;border:1px solid #435449;color:#c5d7ca;padding:5px 9px;border-radius:4px;font:inherit;white-space:nowrap;cursor:pointer}
+.terminal-site .theme-toggle:hover,.terminal-site .theme-toggle:focus-visible{border-color:var(--accent);color:var(--accent);outline-offset:3px}
+.terminal-site .theme-icon{color:var(--accent)}
+.terminal-site .theme-toast{position:fixed;z-index:100;top:22px;left:50%;transform:translate(-50%,-8px);display:flex;align-items:center;gap:10px;padding:10px 16px;border:1px solid #597b5d;border-radius:5px;background:#17251a;color:#d8f2da;box-shadow:0 10px 40px #0005;opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;white-space:nowrap}
+.terminal-site .theme-toast[hidden]{display:none}
+.terminal-site .theme-toast.toast-visible{opacity:1;transform:translate(-50%,0)}
+.terminal-site .bug-icon{font-size:inherit}
+.terminal-site.light-mode{--accent:#276b45;--muted:#65766a;background:#f3f5ef;color:#24332a;filter:none}
+.terminal-site.light-mode .terminal-shell{background:#fbfcf8;border-color:#cbd7cc;box-shadow:0 20px 65px #233a2414}
+.terminal-site.light-mode .window-bar{background:#e6ebe3;border-color:#d0d9ce;color:#5a6b5e}
+.terminal-site.light-mode .terminal-top,.terminal-site.light-mode footer{border-color:#d6dfd4}
+.terminal-site.light-mode .brand,.terminal-site.light-mode .syntax-user,.terminal-site.light-mode .theme-icon{color:#276b45}
+.terminal-site.light-mode .brand span,.terminal-site.light-mode .terminal-top a,.terminal-site.light-mode .hero-links a,.terminal-site.light-mode footer a{color:#52665a}
+.terminal-site.light-mode .status,.terminal-site.light-mode .comment,.terminal-site.light-mode .boot-lines,.terminal-site.light-mode .muted,.terminal-site.light-mode .syntax-dim{color:#687b6c}
+.terminal-site.light-mode .prompt,.terminal-site.light-mode .syntax-command,.terminal-site.light-mode .syntax-name,.terminal-site.light-mode .terminal-section h2,.terminal-site.light-mode .section-heading h2{color:#26382b}
+.terminal-site.light-mode .syntax-path{color:#346da0}.terminal-site.light-mode .syntax-dollar{color:#966b25}.terminal-site.light-mode .syntax-heading{color:#8a651f}
+.terminal-site.light-mode .subtitle,.terminal-site.light-mode .description,.terminal-site.light-mode .terminal-section>p{color:#425448}
+.terminal-site.light-mode .project{background:#f5f8f2;border-color:#d0ddd0;color:#293a2d}
+.terminal-site.light-mode .project-body p{color:#506253}.terminal-site.light-mode .folder{color:#326b9a}
+.terminal-site.light-mode .tags span{background:#e4eee2;color:#386446}
+.terminal-site.light-mode .stack{background:#f0f4ec;border-color:#d0ddd0;color:#2f6844}
+.terminal-site.light-mode .carousel-toolbar{color:#596b5d}
+.terminal-site.light-mode .carousel-actions button{background:#edf3e9;color:#2e6643;border-color:#c3d5c2}
+.terminal-site.light-mode .carousel-indicator span{background:#cad7c9}
+.terminal-site.light-mode .carousel-indicator[aria-pressed="true"] span{background:#276b45;box-shadow:0 0 8px #276b4540}
+.terminal-site.light-mode .terminal-console{border-color:#d6dfd4}
+.terminal-site.light-mode .console-heading{border-color:#d6dfd4;color:#617365}
+.terminal-site.light-mode .console-heading span:last-child,.terminal-site.light-mode .console-response{color:#276b45}
+.terminal-site.light-mode .terminal-console form{background:#f1f5ee;border-color:#cbd9c9}
+.terminal-site.light-mode .terminal-console label{color:#276b45}
+.terminal-site.light-mode .terminal-console input{color:#25372a}
+.terminal-site.light-mode .terminal-console button{background:#e4eee2;border-color:#c1d5c1;color:#276b45}
+.terminal-site.light-mode .email{color:#276b45}
+@media(max-width:760px){.terminal-site .terminal-top{align-items:flex-start}.terminal-site .top-actions{width:100%;margin-left:0;flex-wrap:wrap;justify-content:space-between}.terminal-site .top-actions nav{gap:10px}.terminal-site .theme-toggle{margin-left:auto}}
+@media(prefers-reduced-motion:reduce){.terminal-site .theme-toast{transition:none}}
 </style>
